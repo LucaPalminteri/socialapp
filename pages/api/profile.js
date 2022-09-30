@@ -1,13 +1,10 @@
 import jwt from "jsonwebtoken"; 
-// TODO: install jwt
 
 export default function profileHandler(req, res) {
-  const { myTokenName } = req.cookies;
-  
-  if (!myTokenName) {
-    return res.status(401).json({ error: "Not logged in" });
-  }
+  const { token } = req.cookies;
 
-  const { email, username } = jwt.verify(myTokenName, "secret");
-  return res.status(200).json({ email,username });
+  if (!token) return res.status(401).json({ error: "Not logged in" });
+
+  const data = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
+  return res.status(200).json(data);
 }
