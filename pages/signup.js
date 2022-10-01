@@ -1,18 +1,42 @@
 import Link from 'next/link'
 import React from 'react'
 import Header from '../components/core/Header'
+import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 function Signup() {
+
+  const router = useRouter()
+  const username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await axios.post("/api/auth/signup", 
+    {
+      username:username.current.value,
+      password:password.current.value,
+      email: email.current.value,
+      dateOfBirth: dateOfBirth.current.value
+    });
+
+    if (res.status === 200) {
+        router.push("/login");
+    }
+  };
+
+
   return (
     <div className='login'>
         <Header/>
         <h1>Sign Up</h1>
-        <form>
-            <input type='email' placeholder='Email'/>
-            <input type='text' placeholder='Username'/>
-            <input type='password' placeholder='Password'/>
+        <form onSubmit={handleSubmit}>
+            <input ref={email} type='email' placeholder='Email'/>
+            <input ref={username} type='text' placeholder='Username'/>
+            <input ref={password} type='password' placeholder='Password'/>
             <label>Date of Birth</label>
-            <input type='date'/>
+            <input ref={dateOfBirth} type='date'/>
             <button>Sign Up</button>
         </form>
         <span>Already have an account? 
