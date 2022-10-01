@@ -1,5 +1,5 @@
 import Header from "../components/core/Header"
-import Settings from "@mui/icons-material/Settings"
+import Settings from "../components/pages_components/Settings"
 
 function settings() {
   return (

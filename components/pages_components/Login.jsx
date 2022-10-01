@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import axios from 'axios'
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 // TODO: validate input values
 function Login() {
@@ -9,6 +11,8 @@ function Login() {
     const router = useRouter();
     const username = useRef();
     const password = useRef();
+
+    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,12 +26,20 @@ function Login() {
 
 
   return (
-    <div>
+    <div className='login'>
         <h1>Log In</h1>
 
         <form onSubmit={handleSubmit}>
             <input type='text' ref={username} placeholder='Username'/>
-            <input type='password' ref={password} placeholder='Pa\ssword'/>
+            <div className='password-container'>
+                <input type={showPassword ? "text" : "password"} ref={password} placeholder='Password'/>
+                {
+                showPassword ?
+                <VisibilityIcon className='showpass-icon' onClick={() => setShowPassword(prev => !prev)}>View password</VisibilityIcon>
+                :
+                <VisibilityOutlinedIcon className='showpass-icon' onClick={() => setShowPassword(prev => !prev)}>View password</VisibilityOutlinedIcon>
+                }
+            </div>
             <button>Log In</button>
         </form>
 

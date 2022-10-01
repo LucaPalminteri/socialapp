@@ -3,7 +3,7 @@ import Signup from '../components/pages_components/Signup'
 
 function signup() {
   return (
-    <div className='login'>
+    <div>
         <Header />
         <Signup />
     </div>
