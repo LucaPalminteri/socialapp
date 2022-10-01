@@ -5,7 +5,7 @@ function Homepage() {
   return (
     <div>
         <h1>Homepage</h1>
-        <Footer/>
+        <Footer activeNow='HOMEPAGE'/>
     </div>
   )
 }

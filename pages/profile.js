@@ -19,7 +19,7 @@ function Profile() {
   return (
     <div>
         <h1>Profile</h1>
-        <Footer/>
+        <Footer activeNow={'PROFILE'}/>
         <button  onClick={() => logout()}>Sign Out</button>
         <Link href='/settings'>
             <button>Settings</button>

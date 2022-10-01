@@ -3,7 +3,9 @@ import React from 'react'
 import axios from 'axios'
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
+import Header from '../components/core/Header';
 
+// TODO: validate input values
 function Login() {
 
     const router = useRouter();
@@ -22,24 +24,21 @@ function Login() {
 
 
   return (
-    <div>
-        <h1>Login</h1>
+    <div className='login'>
+        <Header />
+        <h1>Log In</h1>
 
         <form onSubmit={handleSubmit}>
-            <input type='text' ref={username} placeholder='username'/>
-            <input type='password' ref={password} placeholder='pssword'/>
+            <input type='text' ref={username} placeholder='Username'/>
+            <input type='password' ref={password} placeholder='Pa\ssword'/>
             <button>Log In</button>
         </form>
 
-        <Link href='/'>
-            <button>Luca Home</button>
-        </Link>
-        <Link href='/homepage'>
-            <button>Enter</button>
-        </Link>
-        <Link href='/signup'>
-            <button>Sign Up</button>
-        </Link>
+        <span>Don&apos;t have an account? 
+            <Link href='/signup'><span className='su'> Sign Up</span></Link>
+        </span>
+
+        
     </div>
   )
 }
