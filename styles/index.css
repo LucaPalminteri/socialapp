@@ -108,17 +108,21 @@ a {
   text-decoration: none;
 }
 
-form {
+button {
+  cursor: pointer;
+}
+
+.center {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 100vh;
 }
 
 .login {
@@ -149,9 +153,19 @@ form {
 
 .login form input {
   width: 100%;
-  margin: 10px;
-  padding: 6px 4px;
-  text-indent: 4px;
+  background-color: #F6F6F6;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #CDCDCD;
+  border-radius: 2px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+.login form input:focus {
+  outline: 1px solid #343434;
+  -webkit-transform: scale(1.015);
+          transform: scale(1.015);
 }
 
 .login form button {
@@ -160,11 +174,12 @@ form {
   border-radius: 5px;
   border: none;
   padding: 10px;
-  width: 100%;
+  width: 108%;
   margin-top: 10px;
   margin-bottom: 30px;
   -webkit-transition-duration: .2s;
           transition-duration: .2s;
+  font-size: 16px;
 }
 
 .login form button:active {
@@ -172,8 +187,39 @@ form {
           transform: scale(0.9);
 }
 
+.login form .password-container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0;
+}
+
+.login form .password-container input {
+  margin: 0;
+  margin-right: -18px;
+}
+
+.login form .password-container .showpass-icon {
+  position: absolute;
+  right: -10px;
+}
+
+.login form .password-container:hover {
+  cursor: pointer;
+}
+
 .login .su {
   color: #24a0ed;
+}
+
+.login .su:hover {
+  cursor: pointer;
 }
 
 .header {
@@ -211,5 +257,22 @@ form {
           animation-duration: .2s;
   -webkit-animation-name: showL;
           animation-name: showL;
+}
+
+.profile {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=index.css.map */

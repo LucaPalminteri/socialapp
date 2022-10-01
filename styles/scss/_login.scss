@@ -14,11 +14,20 @@
     form {
         width: 250px;
 
+
         input {
             width: 100%;
-            margin: 10px;
-            padding: 6px 4px;
-            text-indent: 4px;
+            background-color: #F6F6F6;
+            margin: 10px 0;
+            padding: 8px;   
+            border: 1px solid #CDCDCD;
+            border-radius: 2px;
+            transition-duration: .2s;
+
+            &:focus {
+                outline: 1px solid #343434;
+                transform: scale(1.015);
+            }
         }
 
         button {
@@ -27,19 +36,48 @@
             border-radius: 5px;
             border: none;
             padding: 10px;
-            width: 100%;
+            width: 108%;
             margin-top: 10px;
             margin-bottom: 30px;
             transition-duration: .2s;
+            font-size: 16px;
 
             &:active {
                 transform: scale(.9);
             }
         }
+
+        .password-container {
+            position: relative;
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center; 
+            margin: 10px 0;
+
+            input {
+                margin: 0;
+                margin-right: -18px;
+            }
+
+            .showpass-icon {
+              position: absolute;
+              right: -10px;
+            }
+            
+            &:hover {
+              cursor: pointer;
+            }
+          }
+
+          
     }
 
 
     .su {
         color: #24a0ed;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

@@ -14,8 +14,13 @@ a {
   text-decoration: none;
 }
 
-form {
+button {
+  cursor: pointer;
+}
+
+.center {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
 }
