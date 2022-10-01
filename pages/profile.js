@@ -1,31 +1,15 @@
-import Link from 'next/link'
-import React from 'react'
+import Header from '../components/core/Header';
+import Profile from '../components/pages_components/Profile';
 import Footer from '../components/core/Footer'
-import { useRouter } from 'next/router';
-import axios from 'axios';
 
-function Profile() {
-
-  const router = useRouter()
-  const logout = async () => {
-    try {
-      await axios.get("/api/auth/signout");
-    } catch (error) {
-      console.error(error.message);
-    }
-    router.push("/");
-  };
-
+function profile() {
   return (
     <div>
-        <h1>Profile</h1>
-        <Footer activeNow={'PROFILE'}/>
-        <button  onClick={() => logout()}>Sign Out</button>
-        <Link href='/settings'>
-            <button>Settings</button>
-        </Link>
+      <Header title={'PROFILE'}/>
+      <Profile />
+      <Footer activeNow={'PROFILE'}/>
     </div>
   )
 }
 
-export default Profile
+export default profile

@@ -1,15 +1,13 @@
-import Link from 'next/link'
-import React from 'react'
+import Header from "../components/core/Header"
+import Settings from "@mui/icons-material/Settings"
 
-function Settings() {
+function settings() {
   return (
     <div>
-        <h1>Settings</h1>
-        <Link href='/profile'>
-            <button>Go Back</button>
-        </Link>
+        <Header />
+        <Settings />
     </div>
   )
 }
 
-export default Settings
+export default settings

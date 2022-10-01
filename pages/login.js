@@ -1,46 +1,13 @@
-import Link from 'next/link'
-import React from 'react'
-import axios from 'axios'
-import { useRef } from 'react';
-import { useRouter } from 'next/router';
 import Header from '../components/core/Header';
+import Login from '../components/pages_components/Login';
 
-// TODO: validate input values
-function Login() {
-
-    const router = useRouter();
-    const username = useRef();
-    const password = useRef();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        const res = await axios.post("/api/auth/login", {username:username.current.value,password:password.current.value});
-    
-        if (res.status === 200) {
-            router.push("/homepage");
-        }
-      };
-
-
+function login() {
   return (
     <div className='login'>
         <Header />
-        <h1>Log In</h1>
-
-        <form onSubmit={handleSubmit}>
-            <input type='text' ref={username} placeholder='Username'/>
-            <input type='password' ref={password} placeholder='Pa\ssword'/>
-            <button>Log In</button>
-        </form>
-
-        <span>Don&apos;t have an account? 
-            <Link href='/signup'><span className='su'> Sign Up</span></Link>
-        </span>
-
-        
+        <Login />
     </div>
   )
 }
 
-export default Login
+export default login

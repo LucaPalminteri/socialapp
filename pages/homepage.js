@@ -1,13 +1,15 @@
-import React from 'react'
+import Header from '../components/core/Header'
+import Homepage from '../components/pages_components/Homepage'
 import Footer from '../components/core/Footer'
 
-function Homepage() {
+function homepage() {
   return (
     <div>
-        <h1>Homepage</h1>
-        <Footer activeNow='HOMEPAGE'/>
+      <Header title={'HOMEPAGE'} />
+      <Homepage />
+      <Footer activeNow='HOMEPAGE'/>
     </div>
   )
 }
 
-export default Homepage
+export default homepage

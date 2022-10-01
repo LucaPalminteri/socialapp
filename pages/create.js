@@ -1,13 +1,15 @@
-import React from 'react'
+import Header from '../components/core/Header'
+import Create from '../components/pages_components/Create'
 import Footer from '../components/core/Footer'
 
-function Create() {
+function create() {
   return (
     <div>
-        <h1>Create</h1>
+        <Header title={'CREATE'} />
+        <Create />
         <Footer activeNow='CREATE'/>
     </div>
   )
 }
 
-export default Create
+export default create
