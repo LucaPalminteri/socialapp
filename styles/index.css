@@ -120,4 +120,96 @@ form {
       -ms-flex-align: center;
           align-items: center;
 }
+
+.login {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #000;
+}
+
+.login h1 {
+  margin: 20px;
+}
+
+.login form {
+  width: 250px;
+}
+
+.login form input {
+  width: 100%;
+  margin: 10px;
+  padding: 6px 4px;
+  text-indent: 4px;
+}
+
+.login form button {
+  color: #FFF;
+  background-color: #24a0ed;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+.login form button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.login .su {
+  color: #24a0ed;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #efefef;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  height: 40px;
+  z-index: 10;
+}
+
+.header h1 {
+  text-align: center;
+  margin: 0;
+}
+
+.header .normal-btn {
+  border: none;
+}
+
+.header .animation-btn {
+  border: none;
+  -webkit-animation-duration: .2s;
+          animation-duration: .2s;
+  -webkit-animation-name: showL;
+          animation-name: showL;
+}
 /*# sourceMappingURL=index.css.map */
