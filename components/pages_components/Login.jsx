@@ -1,18 +1,26 @@
 import Link from 'next/link'
 import axios from 'axios'
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import fetchUsers from '../../utils/users';
 
 // TODO: validate input values
 function Login() {
 
+    const [showPassword, setShowPassword] = useState(false)
+    const [users, setUsers] = useState([])
+
+    useEffect(()=> {
+        setUsers(async() => await fetchUsers())
+    },[])
+
+    console.log(users);
+
     const router = useRouter();
     const username = useRef();
     const password = useRef();
-
-    const [showPassword, setShowPassword] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();

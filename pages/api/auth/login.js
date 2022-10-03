@@ -1,5 +1,6 @@
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
+import { supabase } from "../../../utils/supabaseClient";
 
 const loginHandler = (req,res) => {
     const { username, password } = req.body;

@@ -1,25 +1,13 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 function Profile() {
 
-const [username, setUsername] = useState("")
+  const [username, setUsername] = useState("")
 
   useEffect(()=> {
     user()
   },[])
-
-  const router = useRouter()
-  const logout = async () => {
-    try {
-      await axios.get("/api/auth/signout");
-    } catch (error) {
-      console.error(error.message);
-    }
-    router.push("/");
-  };
 
   const user = async () => {
     try {
@@ -30,16 +18,10 @@ const [username, setUsername] = useState("")
     }
   };
 
-
-
-
   return (
     <div className='profile'>
-        <button  onClick={() => logout()}>Sign Out</button>
-        <h2>username: {username}</h2>
-        <Link href='/settings'>
-            <button>Settings</button>
-        </Link>
+      <h1>Profile</h1>
+      <h2>username: {username != "" ? username : "Loading..."}</h2>
     </div>
   )
 }

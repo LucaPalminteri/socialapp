@@ -4,6 +4,7 @@ import axios from 'axios';
 import Link from 'next/link'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import Head from 'next/head';
 
 function Signup() {
 
@@ -30,6 +31,7 @@ function Signup() {
 
   return (
     <div  className='login'>
+      
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
             <input ref={email} type='email' placeholder='Email'/>
