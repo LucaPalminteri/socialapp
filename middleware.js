@@ -20,14 +20,11 @@ export async function middleware(request) {
     //         }
     //     }
     // }
-
-    console.log(request.nextUrl.pathname);
+    
     try {
         const { payload } = await jwtVerify(jwt,new TextEncoder().encode(process.env.NEXT_PUBLIC_TOKEN_NAME));
-        console.log(payload);
         return NextResponse.next();
     } catch (error) {
-        console.log('e:' + error);
         return NextResponse.next();
     }
 }
