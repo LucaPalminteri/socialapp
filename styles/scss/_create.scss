@@ -1,0 +1,58 @@
+.create {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        input,textarea {
+            width: 80%;
+            margin: 12px 0;
+            padding: 10px;
+            border-radius: 4px;
+            transition-duration: .2s;
+
+            &:focus {
+                outline: 1px solid #343434;
+                transform: scale(1.015);
+            }
+        }
+
+        input {
+            border: none;
+            border-bottom: 2px solid #CECECE;
+            font-size: 18px;
+        }
+
+        textarea {
+            height: 160px;
+            max-width: 80%;
+            min-width: 80%;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 85%;
+            padding: 15px;
+            border: none;
+            background-color: #90ee90;
+            color: #FFF;
+            border-radius: 4px;
+            font-size: 18px;
+            transition-duration: .2s;
+
+            &:active {
+                transform: scale(.9);
+            }
+        }
+    }
+}

@@ -129,6 +129,57 @@ button {
   height: 100vh;
 }
 
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(0deg);
+            transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    -webkit-transform: translate3d(-50%, -50%, 0) rotate(360deg);
+            transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spinner {
+  margin: auto;
+  height: 10vh;
+  opacity: 1;
+  position: relative;
+  -webkit-transition: opacity linear 0.1s;
+  transition: opacity linear 0.1s;
+}
+
+.spinner::before {
+  -webkit-animation: 2s linear infinite spinner;
+          animation: 2s linear infinite spinner;
+  border: solid 5px #EFEFEF;
+  border-bottom-color: #90ee90;
+  border-radius: 50%;
+  content: "";
+  height: 40px;
+  left: 50%;
+  opacity: inherit;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  width: 40px;
+  will-change: transform;
+}
+
 .login {
   height: 100vh;
   display: -webkit-box;
@@ -278,5 +329,100 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.create {
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create form {
+  width: 100%;
+  max-width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.create form input, .create form textarea {
+  width: 80%;
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 4px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+.create form input:focus, .create form textarea:focus {
+  outline: 1px solid #343434;
+  -webkit-transform: scale(1.015);
+          transform: scale(1.015);
+}
+
+.create form input {
+  border: none;
+  border-bottom: 2px solid #CECECE;
+  font-size: 18px;
+}
+
+.create form textarea {
+  height: 160px;
+  max-width: 80%;
+  min-width: 80%;
+}
+
+.create form button {
+  margin-top: 20px;
+  width: 85%;
+  padding: 15px;
+  border: none;
+  background-color: #90ee90;
+  color: #FFF;
+  border-radius: 4px;
+  font-size: 18px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+.create form button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.idea {
+  margin: 30px auto;
+  text-align: left;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 10px #efefef;
+          box-shadow: 0 0 10px #efefef;
+  max-width: 600px;
+}
+
+.homepage {
+  margin-top: 60px;
+  margin-bottom: 100px;
 }
 /*# sourceMappingURL=index.css.map */
