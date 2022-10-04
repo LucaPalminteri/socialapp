@@ -4,13 +4,11 @@ import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { supabase } from '../../utils/supabaseClient';
+import {encrypt} from "../../helpers/handleBcrypt"
 
-// TODO: validate input values
 function Login() {
 
     const [showPassword, setShowPassword] = useState(false)
-    const [users, setUsers] = useState([])
 
     const router = useRouter();
     const username = useRef();
@@ -18,14 +16,14 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const hashPas = await encrypt(password.current.value)
     
-        const res = await axios.post("/api/auth/login", {username:username.current.value,password:password.current.value});
+        const res = await axios.post("/api/auth/login", {username:username.current.value,password:hashPas});
     
         if (res.status === 200) {
             router.push("/homepage");
         }
       };
-
 
   return (
     <div className='login'>

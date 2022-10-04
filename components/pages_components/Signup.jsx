@@ -5,6 +5,7 @@ import Link from 'next/link'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Head from 'next/head';
+import {encrypt} from "../../helpers/handleBcrypt"
 
 function Signup() {
 
@@ -15,12 +16,13 @@ function Signup() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+      const hashPas = await encrypt(password.current.value)
   
       const res = await axios.post("/api/auth/signup", 
       {
         name:name.current.value,
         username:username.current.value,
-        password:password.current.value,
+        password:hashPas,
         email: email.current.value,
         dateOfBirth: dateOfBirth.current.value
       });
