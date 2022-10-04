@@ -9,7 +9,7 @@ import Head from 'next/head';
 function Signup() {
 
     const router = useRouter()
-    const username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
+    const name = useRef(), username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
 
     const [showPassword, setShowPassword] = useState(false)
   
@@ -18,6 +18,7 @@ function Signup() {
   
       const res = await axios.post("/api/auth/signup", 
       {
+        name:name.current.value,
         username:username.current.value,
         password:password.current.value,
         email: email.current.value,
@@ -34,6 +35,7 @@ function Signup() {
       
         <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
+            <input ref={name} type='text' placeholder='Full Name'/>
             <input ref={email} type='email' placeholder='Email'/>
             <input ref={username} type='text' placeholder='Username'/>
             <div className='password-container'>

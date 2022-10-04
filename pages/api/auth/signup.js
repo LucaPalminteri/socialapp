@@ -2,21 +2,23 @@ import { supabase } from "../../../utils/supabaseClient";
 
 const signupHandler = (req,res) => {
 
-    const reqe = req.body;
+    const {name, email, username, password, dateOfBirth} = req.body;
 
-    const insertUser = async () => {
-        const { data,error } = await supabase
+    const createUser = async () => {
+        const { data, error } = await supabase
             .from('user')
             .insert([{
-                email: "example2"
+                fullname: name,
+                email,
+                username,
+                password,
+                date_of_birth: dateOfBirth
             }],{upsert: false})
-            console.log(data);
     }
-    insertUser()
+    createUser()
 
-    console.log(reqe);
 
-    return res.status(200).json({message: "for now everything is ok", reqe})
+    return res.status(200).json({message: "for now everything is ok", username})
 }
 
 
