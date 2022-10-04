@@ -4,7 +4,6 @@ import axios from 'axios';
 import Link from 'next/link'
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import Head from 'next/head';
 import {encrypt} from "../../helpers/handleBcrypt"
 
 function Signup() {
@@ -16,8 +15,11 @@ function Signup() {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
+
+      //validations
+      if( inputValidations() == false ) return ;
+      
       const hashPas = await encrypt(password.current.value)
-  
       const res = await axios.post("/api/auth/signup", 
       {
         name:name.current.value,
@@ -31,6 +33,36 @@ function Signup() {
           router.push("/login");
       }
     };
+
+    const inputValidations = () => {
+
+      if(name.current.value.trim() == '') {
+        alert('name cannot be empty')
+        return false;
+      }
+
+      if(email.current.value.trim() == '') {
+        alert('email cannot be empty')
+        return false;
+      }
+
+      if(username.current.value.trim() == '') {
+        alert('username cannot be empty')
+        return false;
+      }
+
+      if(password.current.value.trim() == '') {
+        alert('password cannot be empty')
+        return false;
+      }
+
+      if(dateOfBirth.current.value.trim() == '') {
+        alert('dateOfBirth cannot be empty')
+        return false;
+      }
+
+      return true;
+    }
 
   return (
     <div  className='login'>

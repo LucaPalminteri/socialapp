@@ -16,14 +16,34 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if( inputValidations() == false ) return;
         const hashPas = await encrypt(password.current.value)
     
         const res = await axios.post("/api/auth/login", {username:username.current.value,password:hashPas});
     
         if (res.status === 200) {
             router.push("/homepage");
+        } 
+        else if(res.status === 401) {
+            console.log("asdf");
+            alert('email or password incorrect')
         }
       };
+
+      const inputValidations = () => {
+
+        if(username.current.value.trim() == '') {
+          alert('username cannot be empty')
+          return false;
+        }
+  
+        if(password.current.value.trim() == '') {
+          alert('password cannot be empty')
+          return false;
+        }
+        return true
+    }
 
   return (
     <div className='login'>
