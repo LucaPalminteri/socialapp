@@ -4,4 +4,16 @@
     padding: 10px;
     box-shadow: 0 0 10px #efefef;
     max-width: 600px;
+
+    .idea-header {
+        display: flex;
+        align-items: center;
+        background-color: #90ee90;
+        margin: -10px;
+        padding: 0 10px;
+
+        h4 {
+            margin-left: 15px;
+        }
+    }
 }
