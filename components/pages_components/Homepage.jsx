@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import Idea from '../core/Idea';
+import Spinner from '../core/Spinner';
 
 function Homepage() {
 
@@ -21,13 +22,11 @@ function Homepage() {
     )
   })
 
-  console.log(ideas);
-
   return (
     <div className='homepage'>
         <h1>Homepage</h1>
         {ideas.length == 0 ? 
-        <div className="spinner"></div>
+        <Spinner />
         :
         arrayIdeas}
     </div>
