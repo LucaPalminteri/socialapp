@@ -18,9 +18,15 @@ function Settings() {
 
 
   return (
-    <div className='center'>
+    <div className='settings'>
         <h1>Settings</h1>
-        <button  onClick={() => logout()}>Sign Out</button>
+        <nav>
+          <li>Theme</li>
+          <li>Theme</li>
+          <li>Edit Profile</li>
+          <li>Saved</li>
+          <li onClick={() => logout()}>Sign Out</li>
+        </nav>
     </div>
   )
 }

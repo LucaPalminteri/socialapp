@@ -26,7 +26,6 @@ function Login() {
             router.push("/homepage");
         } 
         else if(res.status === 401) {
-            console.log("asdf");
             alert('email or password incorrect')
         }
       };

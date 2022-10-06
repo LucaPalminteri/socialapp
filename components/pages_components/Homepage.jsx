@@ -24,11 +24,10 @@ function Homepage() {
 
   return (
     <div className='homepage'>
-        <h1>Homepage</h1>
         {ideas.length == 0 ? 
         <Spinner />
         :
-        arrayIdeas}
+        arrayIdeas.reverse()}
     </div>
   )
 }

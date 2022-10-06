@@ -12,8 +12,6 @@ function Create() {
   const handleSubmit = async (e) => {
       e.preventDefault();
 
-      console.log(title.current.value);
-      console.log(body.current.value);
       if( inputValidations() == false ) return;
   
       const res = await axios.post("/api/create", {title:title.current.value,body:body.current.value});

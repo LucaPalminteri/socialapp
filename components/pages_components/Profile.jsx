@@ -29,8 +29,6 @@ function Profile() {
     }
   };
 
-  console.log(width);
-
   const getIdeasCount = async () => {
     if(currentUser.user_id != undefined) {
         const { data, error} = await supabase.from('ideas').select('*', { count: 'exact' }).eq('user_id',currentUser.user_id)

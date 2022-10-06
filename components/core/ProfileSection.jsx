@@ -41,7 +41,7 @@ function ProfileSection({currentUser}) {
             {arrayIdeas.length == 0 ?
             <Spinner />
             :
-            arrayIdeas}
+            arrayIdeas.reverse()}
         </main>
     </div>
   )

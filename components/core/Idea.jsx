@@ -28,8 +28,9 @@ function Idea({idea}) {
           <h4>{currentUser.length != 0 ? currentUser[0].username : ""}</h4>
       </div>
         <h2>{idea.title}</h2>
-        <p>{idea.body}</p>
-        <span>{idea.created_at}</span>
+        <blockquote>{idea.body}</blockquote>
+        <p>{idea.created_at.slice(0,10)}</p>
+        <p>{idea.created_at.slice(11,19)}</p>
     </div>
   )
 }

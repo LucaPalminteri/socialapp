@@ -18,9 +18,9 @@ function Header({title}) {
   }
   return (
     <div className='header'>
-      <button onClick={goBack} className={isButtonToggled ? 'animation-btn' : 'normal-btn'}>
+      <div onClick={goBack} className={isButtonToggled ? 'animation-btn' : 'normal-btn'}>
         <ArrowBackIosNewIcon />
-      </button>
+      </div>
       {
         title == 'PROFILE' ? 
         <Link href='/settings'>
