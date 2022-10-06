@@ -2,8 +2,19 @@ import Header from '../components/core/Header';
 import Profile from '../components/pages_components/Profile';
 import Footer from '../components/core/Footer'
 import Head from 'next/head';
+import axios from 'axios';
 
-function profile() {
+function profile(props) {
+
+  console.log(props);
+
+  const getCurrentUser = async () => {
+    const { data } = await axios.get('/api/profile')
+    console.log(data.user_id);
+  }
+
+  getCurrentUser()
+
   return (
     <div>
       <Head>
@@ -12,10 +23,27 @@ function profile() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={'PROFILE'}/>
-      <Profile />
+      <Profile user={{user:{},ideas:2}}/>
       <Footer activeNow={'PROFILE'}/>
     </div>
   )
 }
 
 export default profile
+
+export async function getServerSideProps() {
+
+  const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const config = {
+    headers:{
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    }
+  };
+  const user = await axios.get(`${baseURL}/rest/v1/user?select=*`,config);
+  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*`,config);
+  
+  const data = {user: user.data, ideas: ideas.data};
+
+  return {props: data}
+}
