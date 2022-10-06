@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
-
+import Link from 'next/link';
 
 function Settings() {
 
@@ -21,10 +21,12 @@ function Settings() {
     <div className='settings'>
         <h1>Settings</h1>
         <nav>
+          <li>Language</li>
           <li>Theme</li>
-          <li>Theme</li>
-          <li>Edit Profile</li>
-          <li>Saved</li>
+          <Link href='/edit-profile'>
+            <li>Edit Profile</li>
+          </Link>
+          <li>Archive Ideas</li>
           <li onClick={() => logout()}>Sign Out</li>
         </nav>
     </div>

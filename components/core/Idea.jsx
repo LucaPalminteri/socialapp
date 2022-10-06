@@ -1,12 +1,15 @@
 import Image from 'next/image'
+import Router, { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import {supabase} from '../../utils/supabaseClient'
 
 function Idea({idea}) {
   const [currentUser, setCurrentUser] = useState([])
 
+  const router = useRouter();
+
   useEffect(()=>{
-    getUsers()
+    //getUsers()
   },[])
 
   const getUsers = async () => {
@@ -14,10 +17,13 @@ function Idea({idea}) {
     setCurrentUser(data);
   }
 
+  const handleViewProfile = () => {
+    router.push(`/${currentUser[0].username}`)
+  }
 
   return (
     <div className='idea'>
-      <div className='idea-header'>
+      <div className='idea-header' onClick={() => handleViewProfile()}>
         <Image
         style={{borderRadius: 100}}
               alt='user-img'
@@ -25,7 +31,7 @@ function Idea({idea}) {
               width={40}
               height={40}
               />
-          <h4>{currentUser.length != 0 ? currentUser[0].username : ""}</h4>
+          <h4>{currentUser.length == undefined ? currentUser[0].username : ""}</h4>
       </div>
         <h2>{idea.title}</h2>
         <blockquote>{idea.body}</blockquote>
