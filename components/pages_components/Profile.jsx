@@ -2,18 +2,14 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ProfileSection from '../core/ProfileSection';
-import { supabase } from '../../utils/supabaseClient';
 import FollowContainer from '../core/FollowContainer';
 
-function Profile({user}) {
-
-  console.log(user);
+function Profile({ user, ideas }) {
 
   const [currentUser, setCurrentUser] = useState({})
-  const [userIdeas, setUserIdeas] = useState(0)
 
   useEffect(()=> {
-    getUser()
+    //getUser()
   },[])
 
   const [width, setWidth] = useState(0);
@@ -30,14 +26,6 @@ function Profile({user}) {
       console.error(error.message);
     }
   };
-
-  const getIdeasCount = async () => {
-    if(currentUser.user_id != undefined) {
-        const { data, error} = await supabase.from('ideas').select('*', { count: 'exact' }).eq('user_id',currentUser.user_id)
-        setUserIdeas(data.length)
-    }
-  }
-  getIdeasCount()
 
   return (
     <div className='profile'>
@@ -61,13 +49,13 @@ function Profile({user}) {
             priority
         />
     </div>
-    <FollowContainer ideas={user.ideas}/>
+    <FollowContainer ideas={ideas}/>
     <div className='profile-info'>
-      <h3>{user.user.fullname}</h3>
-      <h4>@{user.user.username}</h4>
+      <h3>{user.fullname}</h3>
+      <h4>@{user.username}</h4>
       <p>{user.bio}</p>
     </div>
-    <ProfileSection currentUser={currentUser}/>
+    <ProfileSection user={user}/>
 </div>
   )
 }

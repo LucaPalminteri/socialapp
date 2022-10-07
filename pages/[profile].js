@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Profile from '../components/pages_components/Profile';
 import Header from '../components/core/Header';
 import axios from 'axios';
@@ -6,30 +5,15 @@ import Footer from '../components/core/Footer';
 
 const Post = ({user, ideas}) => {
 
-
-  console.log(user);
-
-
-  const router = useRouter()
-  const { profile } = router.query
-
   return (
     <div>
-        <Header/>
-        <div className='center'>
-          <h3>{user.fullname}</h3>
-          <h4>@{user.username}</h4>
-          <p>email: {user.email}</p>
-          <p>Ideas: {ideas}</p>
-        </div>
-        {/* <Profile user={{user:{},ideas:2}}/> */}
-        <Footer />
+        <Header title={'PROFILE'} username={user.username}/>
+        <Profile user={user} ideas={ideas}/>
+        <Footer activeNow={'PROFILE'}/>
     </div>
   )
 }
-
 export default Post
-
 
 export async function getServerSideProps(context) {
 
