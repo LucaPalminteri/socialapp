@@ -7,7 +7,7 @@ import MarkChatUnreadOutlinedIcon from '@mui/icons-material/MarkChatUnreadOutlin
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
-function Header({title}) {
+function Header({title,username}) {
 
   const [isButtonToggled,setIsButtonToggled] = useState(false)
 
@@ -23,9 +23,12 @@ function Header({title}) {
       </div>
       {
         title == 'PROFILE' ? 
+        <>
+        <h3>{username}</h3>
         <Link href='/settings'>
           <SettingsIcon fontSize='medium' style={style}/> 
         </Link> 
+        </>
         :
         title == 'HOMEPAGE' ? 
         <ChatBubbleOutlineOutlinedIcon fontSize='medium' style={style}/>
