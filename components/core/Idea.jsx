@@ -9,16 +9,16 @@ function Idea({idea}) {
   const router = useRouter();
 
   useEffect(()=>{
-    //getUsers()
+    getUsers()
   },[])
 
   const getUsers = async () => {
-    const {data, error} = await supabase.from('user').select('*').eq('user_id',idea.user_id)
-    setCurrentUser(data);
+    const {data, error} = await supabase.from('user').select().eq('username',idea.username)
+    setCurrentUser(data[0]);
   }
 
   const handleViewProfile = () => {
-    router.push(`/${currentUser[0].username}`)
+    router.push(`/${currentUser.username}`)
   }
 
   return (
@@ -31,7 +31,7 @@ function Idea({idea}) {
               width={40}
               height={40}
               />
-          <h4>{currentUser.length == undefined ? currentUser[0].username : ""}</h4>
+          <h4>{idea.username}</h4>
       </div>
         <h2>{idea.title}</h2>
         <blockquote>{idea.body}</blockquote>
