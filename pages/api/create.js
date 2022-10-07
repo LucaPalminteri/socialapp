@@ -6,18 +6,17 @@ const createHandler = (req,res) => {
     const { title, body } = req.body
 
     const dataUser = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
-    console.log(dataUser.user_id);
-    console.log('title: '+title);
-    console.log('body: ' + body);
 
     const insertPost = async () => {
-        const { data } = await supabase.from("ideas").insert(
+        const { data, error } = await supabase.from("ideas").insert(
             {
-                user_id: dataUser.user_id,
+                username: dataUser.username,
                 title,
                 body
             }
         );
+
+        if(error != undefined) return res.status(400).json({message: "bad request"})
         return res.status(200).json({message: "idea created succesfully!"})
     }
     insertPost()

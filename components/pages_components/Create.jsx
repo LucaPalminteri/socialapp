@@ -15,6 +15,8 @@ function Create() {
       if( inputValidations() == false ) return;
   
       const res = await axios.post("/api/create", {title:title.current.value,body:body.current.value});
+
+      console.log(res);
   
       if (res.status === 200) {
           router.push("/homepage");
