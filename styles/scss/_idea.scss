@@ -8,8 +8,7 @@
     .idea-header {
         display: flex;
         align-items: center;
-        background-color: #eff389;
-        //background-color: #EFEFEF;
+        background-color: #EFEFEF;
         margin: -10px;
         padding: 0 10px;
 
@@ -23,15 +22,17 @@
         padding: 4px 8px;
         border-radius: 8px;
         display: inline-block;
-        background-color: #9ef09e;
+        background-color: #90ee90;
+        color: #000;
     }
 
     p {
         margin: 0;
         margin-bottom: 10px;
         padding: 10px;
-        background-color: #c6f6c6;
+        background-color: #90ee90;
         border-radius: 8px;
+        color: #000;
     }
 
     .date-container {
