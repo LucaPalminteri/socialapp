@@ -82,7 +82,7 @@
 }
 
 .footer nav .footer-icon {
-  padding: 16px 30px;
+  padding: 8px 15px;
 }
 
 .footer nav .active {
@@ -305,7 +305,7 @@ button:active {
   top: 0;
   right: 0;
   left: 0;
-  padding: 10px;
+  padding: 4px;
   height: 40px;
   z-index: 10;
 }
@@ -341,8 +341,10 @@ button:active {
 }
 
 .profile .banner {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 180px;
+  background-color: #eff389;
+  position: absolute;
 }
 
 .profile .profile-img {
@@ -363,12 +365,14 @@ button:active {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   position: absolute;
-  top: 180px;
+  top: 160px;
   right: 10px;
+  background-color: #FFF;
+  border-radius: 16px;
 }
 
 .profile .profile-data .data {
-  padding: 0 10px;
+  padding: 5px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -391,26 +395,35 @@ button:active {
 .profile .profile-data .btn-follow {
   position: absolute;
   padding: 8px;
-  top: 40px;
+  top: 50px;
   left: 0;
   right: 0;
 }
 
 .profile .profile-info {
-  margin-top: 150px;
+  margin-top: 140px;
   text-align: left;
   padding: 0 20px;
   padding-top: 120px;
-  border-bottom: 3px solid #efefef;
   padding-bottom: 20px;
 }
 
 .profile .profile-info h3 {
-  margin-bottom: 0;
+  margin-bottom: -4px;
 }
 
 .profile .profile-info h4 {
   margin: 2px 0;
+  color: #898989;
+  font-weight: normal;
+}
+
+.profile .profile-section button {
+  margin-top: 0;
+  width: 42%;
+  background-color: transparent;
+  border: 1px solid #24a0ed;
+  color: #24a0ed;
 }
 
 .profile .profile-section .profile-ideas {
@@ -514,7 +527,7 @@ button:active {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #CCFFCC;
+  background-color: #eff389;
   margin: -10px;
   padding: 0 10px;
 }
@@ -527,14 +540,14 @@ button:active {
   padding: 4px 8px;
   border-radius: 8px;
   display: inline-block;
-  background-color: #75daff;
+  background-color: #9ef09e;
 }
 
 .idea p {
   margin: 0;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #EEDD82;
+  background-color: #c6f6c6;
   border-radius: 8px;
 }
 

@@ -6,8 +6,10 @@
     flex-direction: column;
 
     .banner {
-        width: 200px;
-        height: 200px;
+        width: 100%;
+        height: 180px;
+        background-color: #eff389;
+        position: absolute;
     }
 
     .profile-img {
@@ -25,11 +27,13 @@
         display: flex;
         flex-wrap: wrap;
         position: absolute;
-        top: 180px;
+        top: 160px;
         right: 10px;
+        background-color: #FFF;
+        border-radius: 16px;
 
         .data {
-            padding: 0 10px;
+            padding: 5px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,30 +47,40 @@
         .btn-follow {
             position: absolute;
             padding: 8px;
-            top: 40px;
+            top: 50px;
             left: 0;
             right: 0;
         }
     }
 
     .profile-info {
-        margin-top: 150px;
+        margin-top: 140px;
         text-align: left;
         padding: 0 20px;
         padding-top: 120px;
-        border-bottom: 3px solid $header-footer-color;
+        //border-bottom: 3px solid $header-footer-color;
         padding-bottom: 20px;
 
         h3 {
-            margin-bottom: 0;
+            margin-bottom: -4px;
         }
 
         h4 {
             margin: 2px 0;
+            color: #898989;
+            font-weight: normal;
         }
     }
 
     .profile-section {
+
+        button {
+            margin-top: 0;
+            width: 42%;
+            background-color: transparent;
+            border: 1px solid #24a0ed;
+            color: #24a0ed;
+        }
         .profile-ideas {
             margin-bottom: 100px;
 
