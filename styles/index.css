@@ -614,4 +614,115 @@ button:active {
   padding: 5px;
   border-radius: 0px 20px 20px 0;
 }
+
+.edit-profile {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #000;
+}
+
+.edit-profile h2 {
+  margin: 20px;
+}
+
+.edit-profile form {
+  width: 250px;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.edit-profile form input, .edit-profile form select {
+  width: 100%;
+  background-color: #F6F6F6;
+  margin: 10px 0;
+  padding: 8px 0;
+  text-indent: 8px;
+  border: 1px solid #CDCDCD;
+  border-radius: 2px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+}
+
+.edit-profile form input:focus, .edit-profile form select:focus {
+  outline: 1px solid #343434;
+  -webkit-transform: scale(1.015);
+          transform: scale(1.015);
+}
+
+.edit-profile form .sex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px;
+}
+
+.edit-profile form .sex-container div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit-profile form .sex-container div input {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+}
+
+.edit-profile form .sex-container div input:focus {
+  outline: none;
+}
+
+.edit-profile form button {
+  color: #FFF;
+  background-color: #24a0ed;
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin: 0;
+  margin-top: 20px;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  font-size: 16px;
+}
+
+.edit-profile form button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.edit-profile .su {
+  color: #24a0ed;
+}
+
+.edit-profile .su:hover {
+  cursor: pointer;
+}
 /*# sourceMappingURL=index.css.map */
