@@ -6,8 +6,8 @@
     flex-direction: column;
 
     .banner {
-        width: 100%;
-        height: 100px;
+        width: 200px;
+        height: 200px;
     }
 
     .profile-img {
@@ -23,8 +23,9 @@
 
     .profile-data {
         display: flex;
+        flex-wrap: wrap;
         position: absolute;
-        top: 200px;
+        top: 180px;
         right: 10px;
 
         .data {
@@ -32,10 +33,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-grow: 1;
 
             h4 {
-                margin: 5px 0;
+                margin: 0;
             }
+        }
+
+        .btn-follow {
+            position: absolute;
+            padding: 8px;
+            top: 40px;
+            left: 0;
+            right: 0;
         }
     }
 
@@ -43,6 +53,7 @@
         margin-top: 150px;
         text-align: left;
         padding: 0 20px;
+        padding-top: 120px;
         border-bottom: 3px solid $header-footer-color;
         padding-bottom: 20px;
 
