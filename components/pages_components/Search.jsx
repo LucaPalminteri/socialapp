@@ -4,6 +4,8 @@ import { useRef, useState, useEffect } from 'react';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+
 
 function Search() {
 
@@ -40,12 +42,13 @@ function Search() {
     }
 
   return (
-    <div className='login'>
-        <h1>Search</h1>
+    <div className='search'>
+        <h2>Search</h2>
         <form onSubmit={handleSubmit}>
             <input type='text' ref={username} placeholder='Search something...'/>
-            <button>Search</button>
+            <button><SearchOutlinedIcon fontSize='small'/></button>
         </form>
+        <h2>Suggestions</h2>
     </div>
   )
 }
