@@ -7,8 +7,6 @@ import Avatar from './Avatar'
 function Idea({idea}) {
   const [currentUser, setCurrentUser] = useState([])
 
-  console.log(idea);
-
   const router = useRouter()
 
   useEffect(()=>{
@@ -34,7 +32,7 @@ function Idea({idea}) {
           onClick={() => handleViewProfile()}
         />
         </div>
-          <h4 onClick={() => handleViewProfile()}>{idea.username}</h4>
+          <h4 onClick={() => handleViewProfile()}>{currentUser.username}</h4>
       </div>
         <h2>{idea.title}</h2>
         <p>{idea.body}</p>

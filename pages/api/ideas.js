@@ -11,7 +11,7 @@ export default function handleUsers(req, res) {
         const { data,error } = await supabase
         .from("ideas")
         .select()
-        .neq('username',currentUsername.username)
+        .neq('user_id',currentUsername.user_id)
         .order('created_at');
         return res.status(200).json(data)
     }
