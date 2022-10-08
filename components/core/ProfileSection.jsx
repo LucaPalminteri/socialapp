@@ -9,7 +9,7 @@ function ProfileSection({user}) {
     useEffect( ()=> { getUserIdeas() },[] )
 
     const getUserIdeas = async () => {
-            const { data } = await supabase.from('ideas').select().eq('username',user.username)
+            const { data,error } = await supabase.from('ideas').select().eq('user_id',user.user_id)
             setUserIdeas(data)
     }
 

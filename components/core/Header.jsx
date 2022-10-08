@@ -19,11 +19,12 @@ function Header({title,username}) {
   return (
     <div className='header'>
       <div onClick={goBack} className={isButtonToggled ? 'animation-btn' : 'normal-btn'}>
-        <ArrowBackIosNewIcon />
-      </div>
+          <ArrowBackIosNewIcon />
+        </div>
       {
         title == 'PROFILE' ? 
         <>
+        
         <h3>{username}</h3>
         <Link href='/settings'>
           <SettingsIcon fontSize='medium' style={style}/> 
@@ -31,10 +32,16 @@ function Header({title,username}) {
         </>
         :
         title == 'HOMEPAGE' ? 
+        <>
+        <div>{' '}</div>
         <ChatBubbleOutlineOutlinedIcon fontSize='medium' style={style}/>
+        </>
         :
         title == 'CREATE' ? 
+        <>
+        <div>{' '}</div>
         < SearchOutlinedIcon fontSize='large' style={style}/>
+        </>
         :
         <h2>{title}</h2>
       }
