@@ -1,36 +1,47 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import Link from 'next/link'
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import {encrypt} from "../../helpers/handleBcrypt"
 
-function EditProfile() {
+function EditProfile({countries, user}) {
 
-    const router = useRouter()
-    const name = useRef(), username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
+  console.log(user);
 
-    const [showPassword, setShowPassword] = useState(false)
+  useEffect(() => {
+    name.current.value = user.fullname
+    username.current.value = user.username
+    email.current.value = user.email
+    dateOfBirth.current.value = user.date_of_birth
+    if (user.gender == 'M') sexM.current.checked = true
+    else if (user.gender == 'F') sexF.current.checked = true
+    country.current.value = user.country
+  }, [user])
+
   
+  
+  const countryOptions = countries.map((country,index) => <option value={country} key={index}>{country}</option>)
+  
+  const router = useRouter()
+  const name = useRef(), username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef(), sexF = useRef(),sexM = useRef(), country = useRef()
+
+
     const handleSubmit = async (e) => {
       e.preventDefault();
 
       //validations
       if( inputValidations() == false ) return ;
       
-      const hashPas = await encrypt(password.current.value)
-      const res = await axios.post("/api/auth/signup", 
+      const res = await axios.put("/api/edit-profile", 
       {
-        name:name.current.value,
+        fullname:name.current.value,
         username:username.current.value,
-        password:hashPas,
         email: email.current.value,
-        dateOfBirth: dateOfBirth.current.value
+        date_of_birth: dateOfBirth.current.value,
+        gender: sexF.current.checked ? 'F' : 'M',
+        country: country.current.value
       });
   
       if (res.status === 200) {
-          router.push("/login");
+          router.push(`/${username.current.value}`);
       }
     };
 
@@ -51,11 +62,6 @@ function EditProfile() {
         return false;
       }
 
-      if(password.current.value.trim() == '') {
-        alert('password cannot be empty')
-        return false;
-      }
-
       if(dateOfBirth.current.value.trim() == '') {
         alert('dateOfBirth cannot be empty')
         return false;
@@ -65,41 +71,36 @@ function EditProfile() {
     }
 
   return (
-    <div  className='login'>
+    <div  className='edit-profile'>
       
-        <h1>Edit Profile</h1>
-        <form onSubmit={()=> console.log('')/*handleSubmit*/}>
+        <h2>Edit Profile</h2>
+        <form onSubmit={handleSubmit}>
             <label>Full Name</label>
             <input ref={name} type='text' placeholder='Full Name'/>
             <label>Email</label>
             <input ref={email} type='email' placeholder='Email'/>
             <label>Username</label>
             <input ref={username} type='text' placeholder='Username'/>
-            <label>Password</label>
-            <div className='password-container'>
-                <input type={showPassword ? "text" : "password"} ref={password} placeholder='Password'/>
-                {
-                showPassword ?
-                <VisibilityIcon className='showpass-icon' onClick={() => setShowPassword(prev => !prev)}>View password</VisibilityIcon>
-                :
-                <VisibilityOutlinedIcon className='showpass-icon' onClick={() => setShowPassword(prev => !prev)}>View password</VisibilityOutlinedIcon>
-                }
-            </div>
             <label>Date of Birth</label>
             <input ref={dateOfBirth} type='date'/>
             <label>Sex</label>
-            <input ref={name} type='radio' />
-            <input ref={name} type='radio' />
+            <div className='sex-container'>
+              <div>
+                <span>M</span>
+                <span>F</span>
+              </div>
+              <div>
+                <input ref={sexM} type='radio' name='sex' value='M'/>
+                <input ref={sexF} type='radio' name='sex' value='F'/>
+              </div>
+            </div>
             <label>Country</label>
-            <select ref={name} type='' placeholder='Full Name'>
-              <option> sdc</option>
+            <select ref={country} type='' placeholder='Full Name'>
+              {countryOptions}
             </select>
 
             <button>Update Profile</button>
         </form>
-        <span>Already have an account? 
-            <Link href='/login'><span className='su'> Log In</span></Link>
-        </span>
     </div>
   )
 }
