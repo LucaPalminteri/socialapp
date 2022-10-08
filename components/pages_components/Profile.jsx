@@ -3,13 +3,16 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ProfileSection from '../core/ProfileSection';
 import FollowContainer from '../core/FollowContainer';
+import {supabase} from '../../utils/supabaseClient'
+import Avatar from '../core/Avatar';
 
 function Profile({ user, ideas }) {
 
   const [currentUser, setCurrentUser] = useState({})
+  const [loading, setLoading] = useState(true)
 
   useEffect(()=> {
-    //getUser()
+    getUser()
   },[])
 
   const [width, setWidth] = useState(0);
@@ -30,26 +33,21 @@ function Profile({ user, ideas }) {
   return (
     <div className='profile'>
     <div className='banner'>
-        <Image
+        {/* <Image
             alt='banner'
             src={'/banner.jpg'}
             width={width}
-            height={180}
+            height={17}
             priority
-        />
+        /> */}
     </div>
     <div className='profile-img'>
-      <Image
-      style={{borderRadius: 100}}
-            alt='user-img'
-            src={'/user-img.jpg'}
-            layout={'responsive'}
-            width={100}
-            height={100}
-            priority
-        />
+      <Avatar
+        url={user.avatar_url}
+        size={100}
+      />
     </div>
-    <FollowContainer ideas={ideas}/>
+    <FollowContainer ideas={ideas} username={user.username}/>
     <div className='profile-info'>
       <h3>{user.fullname}</h3>
       <h4>@{user.username}</h4>

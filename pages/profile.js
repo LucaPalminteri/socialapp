@@ -6,11 +6,9 @@ import axios from 'axios';
 
 function profile(props) {
 
-  console.log(props);
 
   const getCurrentUser = async () => {
     const { data } = await axios.get('/api/profile')
-    console.log(data.user_id);
   }
 
   getCurrentUser()

@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
     }
   };
   const user = await axios.get(`${baseURL}/rest/v1/user?select=*&username=eq.${currentUser}`,config);
-  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&username=eq.${currentUser}`,config);
+  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=eq.${1}`,config);
   
   const data = {user: {...user.data[0], password: null}, ideas: ideas.data.length};
 
