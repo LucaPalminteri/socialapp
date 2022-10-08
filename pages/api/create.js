@@ -10,7 +10,7 @@ const createHandler = (req,res) => {
     const insertPost = async () => {
         const { data, error } = await supabase.from("ideas").insert(
             {
-                username: dataUser.username,
+                user_id: dataUser.user_id,
                 title,
                 body
             }
