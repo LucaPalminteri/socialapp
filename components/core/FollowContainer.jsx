@@ -51,7 +51,7 @@ function FollowContainer({ideas, user, follows, followers}) {
     <div className='profile-data'>
       <div className='data'>
         <h4>Ideas</h4>
-        <h4>{ideas}</h4>
+        <h4>{ideas.length}</h4>
       </div>
       <div className='data'>
         <h4>Followers</h4>

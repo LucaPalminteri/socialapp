@@ -1,26 +1,12 @@
-import Link from 'next/link'
-import Avatar from './Avatar'
+import SuggestUser from './SuggestUser'
 
 function Suggestions({users}) {
 
-    const arrayUsers = users.map((user,index) => {
-        return (
-        <Link href={`/${user.username}`} key={index} >
-        <div className='suggestion-item'>
-            <Avatar
-            url={user.avatar_url}
-            size={40}
-            onClick={() => handleViewProfile()}
-            />
-            <h4>{user.username}</h4>
-        </div>
-        </Link>
-        )
-    })
+    const arrayUsers = users.map((user,index) => <SuggestUser key={index} user={user} size={40}/>)
   return (
     <div className='suggestions'>
         <h2>Suggestions</h2>
-        {arrayUsers}
+        {arrayUsers.slice(0,5)}
     </div>
   )
 }
