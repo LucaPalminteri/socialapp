@@ -1,53 +1,31 @@
-import Link from 'next/link'
-import axios from 'axios'
 import { useRef, useState, useEffect } from 'react';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import {encrypt} from "../../helpers/handleBcrypt"
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Suggestions from '../core/Suggestions';
+import Avatar from '../core/Avatar';
+import Link from 'next/link';
+import SuggestUser from '../core/SuggestUser';
 
 function Search({users}) {
 
-    const username = useRef();
+  const [searchUser, setSearchUser] = useState("")
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  let usersFilter = users.filter(user => user.username.includes(searchUser))
+  if(searchUser == "") usersFilter = []
+  const arrayUsersFilter = usersFilter.map((user,index) => <SuggestUser key={index} user={user} size={40}/>)
 
-        if( inputValidations() == false ) return;
-        const hashPas = await encrypt(password.current.value)
-    
-        const res = await axios.post("/api/auth/login", {username:username.current.value,password:hashPas});
-    
-        if (res.status === 200) {
-            router.push("/homepage");
-        } 
-        else if(res.status === 401) {
-            alert('email or password incorrect')
-        }
-      };
-
-      const inputValidations = () => {
-
-        if(username.current.value.trim() == '') {
-          alert('username cannot be empty')
-          return false;
-        }
-  
-        if(password.current.value.trim() == '') {
-          alert('password cannot be empty')
-          return false;
-        }
-        return true
-    }
+  const inputHandler = (e) => {
+    setSearchUser(e.target.value);
+  }
 
   return (
     <div className='search'>
-        <form onSubmit={handleSubmit}>
-            <input type='text' ref={username} placeholder='Search something...'/>
-            <button><SearchOutlinedIcon fontSize='small'/></button>
-        </form>
-        <Suggestions users={users}/>
+      <div className='search-container'>
+        <input type='text' placeholder='Search someone by username...' onChange={(e)=> inputHandler(e)}/>
+        <button><SearchOutlinedIcon fontSize='small'/></button>
+      </div>
+      {arrayUsersFilter}
+        
+      <Suggestions users={users}/>
     </div>
   )
 }
