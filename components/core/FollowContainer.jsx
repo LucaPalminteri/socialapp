@@ -19,10 +19,10 @@ function FollowContainer({ideas, user, follows, followers}) {
   
   const handleFollow = async () => {
     if (isFollowing) {
-      const {data} =  await axios.put('/api/actions/unfollow', {user_id: 14, follow_user_id: user.user_id})
+      const {data} =  await axios.put('/api/actions/unfollow', {user_id: currentUser.user_id, follow_user_id: user.user_id})
     }
     else {
-      const {data} =  await axios.post('/api/actions/follow',{user_id: 14, follow_user_id: user.user_id})
+      const {data} =  await axios.post('/api/actions/follow',{user_id: currentUser.user_id, follow_user_id: user.user_id})
     }
 
     setIsFollowing(prev => !prev)
