@@ -633,7 +633,7 @@ button:active {
 }
 
 .edit-profile {
-  height: 100vh;
+  margin: 50px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -655,12 +655,12 @@ button:active {
 }
 
 .edit-profile form {
-  width: 250px;
+  width: 280px;
   min-width: 250px;
   max-width: 300px;
 }
 
-.edit-profile form input, .edit-profile form select {
+.edit-profile form input, .edit-profile form select, .edit-profile form textarea {
   width: 100%;
   background-color: #F6F6F6;
   margin: 10px 0;
@@ -672,10 +672,20 @@ button:active {
           transition-duration: .2s;
 }
 
-.edit-profile form input:focus, .edit-profile form select:focus {
+.edit-profile form input:focus, .edit-profile form select:focus, .edit-profile form textarea:focus {
   outline: 1px solid #343434;
   -webkit-transform: scale(1.015);
           transform: scale(1.015);
+}
+
+.edit-profile form label {
+  display: block;
+}
+
+.edit-profile form textarea {
+  height: 100px;
+  max-width: 300px;
+  text-indent: 10px;
 }
 
 .edit-profile form .sex-container {
