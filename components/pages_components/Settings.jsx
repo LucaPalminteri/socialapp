@@ -2,6 +2,16 @@ import React from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import TranslateIcon from '@mui/icons-material/Translate';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
+import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
+import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 
 function Settings() {
 
@@ -19,15 +29,53 @@ function Settings() {
 
   return (
     <div className='settings'>
-        <h1>Settings</h1>
         <nav>
-          <li>Language</li>
-          <li>Theme</li>
+          <li>
+            <TranslateIcon/>
+            <p>Language</p>
+          </li>
+          <li>
+            <NotificationsNoneOutlinedIcon/>
+            <p>Notifications</p>
+          </li>
+          <li>
+            <ColorLensOutlinedIcon/>
+            <p>Theme</p>
+          </li>
           <Link href='/edit-profile'>
-            <li>Edit Profile</li>
+            <li>
+              <AccountBoxOutlinedIcon/>
+              <p>Edit Profile</p>
+            </li>
           </Link>
-          <li>Archive Ideas</li>
-          <li onClick={() => logout()}>Sign Out</li>
+          <li>
+            <BookmarkBorderIcon/>
+            <p>Archive Ideas</p>
+          </li>
+          <li>
+            <LockOutlinedIcon/>
+            <p>Privacy</p>
+          </li>
+          <li>
+            <SecurityOutlinedIcon/>
+            <p>Security</p>
+          </li>
+          <li>
+            <InfoOutlinedIcon/>
+            <p>About</p>
+          </li>
+          <li>
+            <SupportOutlinedIcon/>
+            <p>Help</p>
+          </li>
+          <li>
+            <PersonAddAltOutlinedIcon/>
+            <p>Invite friends</p>
+          </li>
+          <li onClick={() => logout()}>
+            <LogoutOutlinedIcon/>
+            <p>Log out</p>
+          </li>
         </nav>
     </div>
   )
