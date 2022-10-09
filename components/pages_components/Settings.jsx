@@ -26,6 +26,20 @@ function Settings() {
 
   const router = useRouter()
 
+  const shareData = {
+    title: 'Social App',
+    text: 'Join a small social app project!',
+    url: 'https://socialapp-phi.vercel.app/'
+  }
+
+  const shareHandler = async () => {
+    try {
+      await navigator.share(shareData)
+    } catch(error) {
+      console.error(error);
+    }
+  }
+
 
   return (
     <div className='settings'>
@@ -68,7 +82,7 @@ function Settings() {
             <SupportOutlinedIcon/>
             <p>Help</p>
           </li>
-          <li>
+          <li onClick={shareHandler}>
             <PersonAddAltOutlinedIcon/>
             <p>Invite friends</p>
           </li>
