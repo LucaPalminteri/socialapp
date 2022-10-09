@@ -5,8 +5,6 @@ import jwt from "jsonwebtoken";
 export default function handleUsers(req, res) {
     const {token} = req.cookies 
 
-    console.log(req.body);
-
     const currentUsername = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
 
     const updateUser = async () => {

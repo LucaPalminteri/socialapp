@@ -21,10 +21,19 @@ export async function getServerSideProps(context) {
 
   const token = context.req.cookies.token
 
-  const currentUsername = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
+  const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const config = {
+    headers:{
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    }
+  };
 
-  const baseURL = 'https://countrycode.dev/api/countries';
-  const {data} = await axios.get(baseURL);
+  const currentUser = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
+  const user = await axios.get(`${baseURL}/rest/v1/user?select=*&user_id=eq.${currentUser.user_id}`,config);
 
-  return {props: {countries: data, user: currentUsername}}
+  const baseURLcountry = 'https://countrycode.dev/api/countries';
+  const {data} = await axios.get(baseURLcountry);
+
+  return {props: {countries: data, user: user.data[0]}}
 }

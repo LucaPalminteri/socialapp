@@ -3,12 +3,12 @@ import Header from '../components/core/Header';
 import axios from 'axios';
 import Footer from '../components/core/Footer';
 
-const Post = ({user, ideas}) => {
+const Post = ({user, ideas, follows, followers}) => {
 
   return (
     <div>
         <Header title={'PROFILE'} username={user.username}/>
-        <Profile user={user} ideas={ideas}/>
+        <Profile user={user} ideas={ideas} follows={follows} followers={followers}/>
         <Footer activeNow={'PROFILE'}/>
     </div>
   )
@@ -27,9 +27,12 @@ export async function getServerSideProps(context) {
     }
   };
   const user = await axios.get(`${baseURL}/rest/v1/user?select=*&username=eq.${currentUser}`,config);
-  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=eq.${1}`,config);
+  const userId = await user.data[0].user_id
+  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=eq.${userId}`,config);
+  const follows = await axios.get(`${baseURL}/rest/v1/user_follows?select=*&user_id=eq.${userId}`,config);
+  const followers = await axios.get(`${baseURL}/rest/v1/user_follows?select=*&follow_user_id=eq.${userId}`,config);
   
-  const data = {user: {...user.data[0], password: null}, ideas: ideas.data.length};
+  const data = {user: {...user.data[0], password: null}, ideas: ideas.data.length, follows: follows.data, followers: followers.data};
 
   return {props: data}
 }
