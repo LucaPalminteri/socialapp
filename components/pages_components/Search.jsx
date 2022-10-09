@@ -5,9 +5,9 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import Suggestions from '../core/Suggestions';
 
-
-function Search() {
+function Search({users}) {
 
     const username = useRef();
 
@@ -43,12 +43,11 @@ function Search() {
 
   return (
     <div className='search'>
-        <h2>Search</h2>
         <form onSubmit={handleSubmit}>
             <input type='text' ref={username} placeholder='Search something...'/>
             <button><SearchOutlinedIcon fontSize='small'/></button>
         </form>
-        <h2>Suggestions</h2>
+        <Suggestions users={users}/>
     </div>
   )
 }

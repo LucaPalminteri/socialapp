@@ -6,11 +6,16 @@ import Spinner from '../core/Spinner';
 function ProfileSection({user}) {
 
     const [userIdeas, setUserIdeas] = useState([])
-    useEffect( ()=> { getUserIdeas() },[] )
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect( ()=> { 
+        getUserIdeas() 
+        setIsLoading(false)
+    },[] )
 
     const getUserIdeas = async () => {
-            const { data,error } = await supabase.from('ideas').select().eq('user_id',user.user_id)
-            setUserIdeas(data)
+        const { data,error } = await supabase.from('ideas').select().eq('user_id',user.user_id)
+        setUserIdeas(data)
     }
 
     const arrayIdeas = userIdeas.map(idea => <Idea key={idea.id} idea={idea}/>)
@@ -30,10 +35,15 @@ function ProfileSection({user}) {
             </button>
         </nav>
         <main className="profile-ideas">
-            {arrayIdeas.length == 0 ?
-            <Spinner />
-            :
-            arrayIdeas.reverse()}
+            {
+                arrayIdeas.length == 0 ?
+                isLoading ?
+                <Spinner />
+                :
+                <h3>You don&apos;t have ideas yet. Create One!</h3>
+                :
+                arrayIdeas.reverse()
+            }
         </main>
     </div>
   )

@@ -2,8 +2,9 @@ import Header from '../components/core/Header'
 import Footer from '../components/core/Footer'
 import Head from 'next/head';
 import Search from '../components/pages_components/Search';
+import axios from 'axios';
 
-function search() {
+function search({users}) {
   return (
     <div>
         <Head>
@@ -12,10 +13,26 @@ function search() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
         <Header title={'SEARCH'} />
-        <Search />
+        <Search users={users}/>
         <Footer activeNow='SEARCH'/>
     </div>
   )
 }
 
 export default search
+
+export async function getServerSideProps(context) {
+
+  const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const config = {
+    headers:{
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    }
+  };
+  const {data} = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
+  
+
+  return {props: {users: data}}
+}
+

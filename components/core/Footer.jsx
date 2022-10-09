@@ -49,7 +49,7 @@ function Footer({activeNow}) {
                 <SearchOutlinedIcon className='footer-icon' fontSize='large' /> 
             }
             </Link>
-            <Link href={`/${user}`}>
+            <Link href={`/${user}`} >
             {
                 activeNow == 'PROFILE' ?
                 <div className='line-icon'><AccountCircleRoundedIcon className='footer-icon active' fontSize='large' /></div> :

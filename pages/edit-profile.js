@@ -7,7 +7,7 @@ function editprofile({countries,user}) {
 
   return (
     <div>
-        <Header/>
+        <Header title={'Edit Profile'}/>
         <EditProfile countries={countries} user={user}/>
     </div>
   )
