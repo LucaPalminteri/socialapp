@@ -2,8 +2,9 @@ import Header from '../components/core/Header'
 import Homepage from '../components/pages_components/Homepage'
 import Footer from '../components/core/Footer'
 import Head from 'next/head';
+import axios from 'axios';
 
-function homepage() {
+function homepage({users,ideas}) {
   return (
     <div>
       <Head>
@@ -12,10 +13,25 @@ function homepage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={'HOMEPAGE'} />
-      <Homepage />
+      <Homepage users={users} ideas={ideas}/>
       <Footer activeNow='HOMEPAGE'/>
     </div>
   )
 }
 
 export default homepage
+
+export async function getServerSideProps(context) {
+
+  const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const config = {
+    headers:{
+      apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    }
+  };
+  const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
+  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&order=created_at`,config);
+
+  return {props: {users: users.data, ideas: ideas.data}}
+}

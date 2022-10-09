@@ -1,37 +1,14 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react';
 import Idea from '../core/Idea';
-import Spinner from '../core/Spinner';
 
-function Homepage() {
+function Homepage({users, ideas}) {
 
-  const [ideas, setIdeas] = useState([])
-
-  useEffect(()=> {
-    getIdeas()
-  },[])
-
-  const getIdeas = async () => {
-    const { data } = await axios.get('/api/ideas');
-    setIdeas(data);
-  }
-
-  const arrayIdeas = ideas.map(idea => {
-    return (
-      <Idea key={idea.id} idea={idea}/>
-    )
-  })
+  const arrayIdeas = ideas.map(idea => <Idea key={idea.id} idea={idea} user={users.find(user => user.user_id == idea.user_id)}/>)
 
   return (
     <div className='homepage'>
-        {ideas.length == 0 ? 
-        <Spinner />
-        :
-        arrayIdeas.reverse()}
+        {arrayIdeas.reverse().slice(0,10)}
     </div>
   )
 }
 
 export default Homepage
-
-
