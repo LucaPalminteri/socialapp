@@ -5,37 +5,39 @@ import { supabase } from "../../utils/supabaseClient";
 
 function FollowContainer({ideas, user, follows, followers}) {
 
-  const [btnState, setBtnState] = useState(false)
   const [userFollowers, setUserFollowers] = useState()
   const [userFollows, setUserFollows] = useState()
   const [currentUser, setCurrentUser] = useState({})
-  const [isFollowing, setIsFollowing] = useState(false)
+  const [isFollowing, setIsFollowing] = useState(undefined)
 
   useEffect(() => {
+    getUser() 
     setUserFollowers(followers.length)
     setUserFollows(follows.length)
-    getUser() 
-    followUser()
   }, [])
 
-  console.log(currentUser.user_id);
+  
+  const handleFollow = async () => {
+    if (isFollowing) {
+      const {data} =  await axios.put('/api/actions/unfollow', {user_id: 14, follow_user_id: user.user_id})
+    }
+    else {
+      const {data} =  await axios.post('/api/actions/follow',{user_id: 14, follow_user_id: user.user_id})
+    }
 
-  const handleFollow = () => {
-    
-    setBtnState(prev => !prev)
-    if(btnState) setUserFollowers(prev => prev+1)
-    else setUserFollowers(prev => prev-1)
+    setIsFollowing(prev => !prev)
+    setUserFollowers(prev => isFollowing ? prev-1 : prev+1)
   }
 
   const followUser = async ()=> {
-    if (currentUser != {}) {
+     
       const {data} = await supabase.from('user_follows').select().eq('user_id',currentUser.user_id).eq('follow_user_id',user.user_id)
+      if (data.length != 0) setIsFollowing(true)
+      else if (data != []) setIsFollowing(false)
     
-    if (data != []) setIsFollowing(true)
-    else if (data.length == 1) setIsFollowing(false)
-    }
   }
-
+  if (currentUser.user_id != undefined) followUser()
+  
   const getUser = async () => {
     try {
       const {data} = await axios.get("/api/profile");
@@ -63,12 +65,22 @@ function FollowContainer({ideas, user, follows, followers}) {
         currentUser == {} ?
         <button>.</button>
         :
-          currentUser == user.username ? 
+          currentUser.user_id == user.user_id ? 
           <Link href={{pathname: '/edit-profile',query: 'example'}}>
             <button className='btn-follow'>Edit Profile</button>
           </Link>
           :
-          <button className='btn-follow' onClick={()=>handleFollow()}>{btnState ? 'Follow' : 'Unfollow'}</button>
+          <button className='btn-follow' onClick={()=>handleFollow()}>
+            {
+              isFollowing == undefined ?
+              "..."
+              :
+              isFollowing ?
+                'Unfollow' 
+                : 
+                'Follow' 
+            }
+          </button>
       }
     </div>
   )
