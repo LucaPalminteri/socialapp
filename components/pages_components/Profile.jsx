@@ -29,7 +29,7 @@ function Profile({ user, ideas, follows, followers }) {
           size={100}
         />
     </div>
-    <FollowContainer ideas={ideas} username={user.username} follows={follows} followers={followers}/>
+    <FollowContainer ideas={ideas} user={user} follows={follows} followers={followers}/>
     <div className='profile-info'>
       <h3>{user.fullname}</h3>
       <h4>@{user.username}</h4>

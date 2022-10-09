@@ -34,7 +34,7 @@ function Header({title,username}) {
         title == 'HOMEPAGE' ? 
         <>
         <div>{' '}</div>
-        <ChatBubbleOutlineOutlinedIcon fontSize='medium' style={style}/>
+        <ChatBubbleOutlineOutlinedIcon onClick={() => alert('Chat is cooming soon...')}  fontSize='medium' style={style}/>
         </>
         :
         title == 'CREATE' ? 

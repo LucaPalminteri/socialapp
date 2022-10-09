@@ -35,6 +35,7 @@ function EditProfile({countries, user}) {
         email: email.current.value,
         date_of_birth: dateOfBirth.current.value,
         gender: sexF.current.checked ? 'F' : 'M',
+        bio: bio.current.value,
         country: country.current.value
       });
   
