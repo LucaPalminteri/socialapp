@@ -66,14 +66,12 @@ function EditProfile({countries, user}) {
 
   return (
     <div  className='edit-profile'>
-      
-        <h2>Edit Profile</h2>
         <form onSubmit={handleSubmit}>
         <Avatar
         url={user.avatar_url}
         size={100}
       />
-            <label>Avatar Image</label>
+            <label>Change profile photo</label>
             <input ref={avatarImage} type='file' placeholder='Avatar Image'/>
             <label>Full Name</label>
             <input ref={name} type='text' placeholder='Full Name'/>
@@ -81,8 +79,6 @@ function EditProfile({countries, user}) {
             <textarea ref={bio} type='text' placeholder='Bio'/>
             <label>Email</label>
             <input ref={email} type='email' placeholder='Email'/>
-            {/* <label>Username</label>
-            <input ref={username} type='text' placeholder='Username'/> */}
             <label>Date of Birth</label>
             <input ref={dateOfBirth} type='date'/>
             <label>Sex</label>
