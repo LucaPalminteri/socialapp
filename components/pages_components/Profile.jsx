@@ -35,7 +35,7 @@ function Profile({ user, ideas, follows, followers }) {
       <h4>@{user.username}</h4>
       <p>{user.bio}</p>
     </div>
-    <ProfileSection user={user}/>
+    <ProfileSection user={user} ideas={ideas}/>
 </div>
   )
 }

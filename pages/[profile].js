@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   const follows = await axios.get(`${baseURL}/rest/v1/user_follows?select=*&user_id=eq.${userId}`,config);
   const followers = await axios.get(`${baseURL}/rest/v1/user_follows?select=*&follow_user_id=eq.${userId}`,config);
   
-  const data = {user: {...user.data[0], password: null}, ideas: ideas.data.length, follows: follows.data, followers: followers.data};
+  const data = {user: {...user.data[0], password: null}, ideas: ideas.data, follows: follows.data, followers: followers.data};
 
   return {props: data}
 }
