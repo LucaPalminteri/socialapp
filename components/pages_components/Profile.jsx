@@ -4,7 +4,7 @@ import ProfileSection from '../core/ProfileSection';
 import FollowContainer from '../core/FollowContainer';
 import Avatar from '../core/Avatar';
 
-function Profile({ user, ideas, follows, followers }) {
+export default function Profile({ user, ideas, follows, followers }) {
 
   const [width, setWidth] = useState(0);
 
@@ -39,5 +39,3 @@ function Profile({ user, ideas, follows, followers }) {
 </div>
   )
 }
-
-export default Profile

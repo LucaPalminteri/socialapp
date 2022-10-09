@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs') 
 
 const encrypt = async (textPlain) => { 
-    const hash = await bcrypt.hash(textPlain, 10) //0404o4ofoto4o
+    const hash = await bcrypt.hash(textPlain, 10)
     return hash
 }
 

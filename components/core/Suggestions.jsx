@@ -1,6 +1,6 @@
 import SuggestUser from './SuggestUser'
 
-function Suggestions({users}) {
+export default function Suggestions({users}) {
 
     const arrayUsers = users.map((user,index) => <SuggestUser key={index} user={user} size={40}/>)
   return (
@@ -10,5 +10,3 @@ function Suggestions({users}) {
     </div>
   )
 }
-
-export default Suggestions

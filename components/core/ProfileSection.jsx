@@ -1,6 +1,6 @@
 import Idea from "./Idea"
 
-function ProfileSection({user, ideas}) {
+export default function ProfileSection({user, ideas}) {
 
     const arrayIdeas = ideas.map(idea => <Idea key={idea.id} idea={idea} user={user}/>)
 
@@ -25,5 +25,3 @@ function ProfileSection({user, ideas}) {
     </div>
   )
 }
-
-export default ProfileSection

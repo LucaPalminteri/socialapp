@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Avatar from '../core/Avatar';
 
-function EditProfile({countries, user}) {
+export default function EditProfile({countries, user}) {
 
   const router = useRouter()
   const name = useRef(), email = useRef(), avatarImage = useRef(),
@@ -110,5 +110,3 @@ function EditProfile({countries, user}) {
     </div>
   )
 }
-
-export default EditProfile

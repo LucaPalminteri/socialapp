@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Avatar from './Avatar'
 
-function Idea({idea, user}) {
+export default function Idea({idea, user}) {
 
   const router = useRouter()
 
@@ -35,5 +35,3 @@ function Idea({idea, user}) {
     </div>
   )
 }
-
-export default Idea

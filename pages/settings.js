@@ -2,7 +2,7 @@ import Header from "../components/core/Header"
 import Settings from "../components/pages_components/Settings"
 import Head from 'next/head';
 
-function settings() {
+export default function settings() {
   return (
     <div>
       <Head>
@@ -15,5 +15,3 @@ function settings() {
     </div>
   )
 }
-
-export default settings

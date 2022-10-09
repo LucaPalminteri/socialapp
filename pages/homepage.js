@@ -4,7 +4,7 @@ import Footer from '../components/core/Footer'
 import Head from 'next/head';
 import axios from 'axios';
 
-function homepage({users,ideas}) {
+export default function homepage({users,ideas}) {
   return (
     <div>
       <Head>
@@ -19,9 +19,7 @@ function homepage({users,ideas}) {
   )
 }
 
-export default homepage
-
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
 
   const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const config = {

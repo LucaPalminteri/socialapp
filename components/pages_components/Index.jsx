@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import Head from 'next/head'
 
-function Index() {
+export default function Index() {
   return (
     <div className='center'>
         
@@ -17,5 +16,3 @@ function Index() {
     </div>
   )
 }
-
-export default Index

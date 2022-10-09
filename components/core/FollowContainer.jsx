@@ -3,17 +3,14 @@ import { useState,useEffect } from 'react'
 import Link from "next/link";
 import { supabase } from "../../utils/supabaseClient";
 
-function FollowContainer({ideas, user, follows, followers}) {
+export default function FollowContainer({ideas, user, follows, followers}) {
 
-  const [userFollowers, setUserFollowers] = useState()
-  const [userFollows, setUserFollows] = useState()
+  const [userFollowers, setUserFollowers] = useState(followers.length)
   const [currentUser, setCurrentUser] = useState({})
   const [isFollowing, setIsFollowing] = useState(undefined)
 
   useEffect(() => {
     getUser() 
-    setUserFollowers(followers.length)
-    setUserFollows(follows.length)
   }, [])
 
   
@@ -59,7 +56,7 @@ function FollowContainer({ideas, user, follows, followers}) {
       </div>
       <div className='data'>
         <h4>Follows</h4>
-        <h4>{userFollows}</h4>
+        <h4>{follows.length}</h4>
       </div>
       {
         currentUser == {} ?
@@ -85,5 +82,3 @@ function FollowContainer({ideas, user, follows, followers}) {
     </div>
   )
 }
-
-export default FollowContainer

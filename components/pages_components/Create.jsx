@@ -1,9 +1,8 @@
-import React from 'react'
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import axios from 'axios';
 
-function Create() {
+export default function Create() {
 
   const router = useRouter();
   const title = useRef();
@@ -47,5 +46,3 @@ function Create() {
     </div>
   )
 }
-
-export default Create

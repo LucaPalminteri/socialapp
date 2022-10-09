@@ -1,9 +1,9 @@
-import React from 'react'
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import TranslateIcon from '@mui/icons-material/Translate';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import SecurityOutlinedIcon from '@mui/icons-material/SecurityOutlined';
 import SupportOutlinedIcon from '@mui/icons-material/SupportOutlined';
 
-function Settings() {
+export default function Settings() {
 
   const logout = async () => {
     try {
@@ -94,5 +94,3 @@ function Settings() {
     </div>
   )
 }
-
-export default Settings

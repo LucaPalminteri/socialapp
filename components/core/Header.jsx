@@ -6,7 +6,7 @@ import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutline
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
-function Header({title,username}) {
+export default function Header({title,username}) {
 
   const [isButtonToggled,setIsButtonToggled] = useState(false)
 
@@ -47,5 +47,3 @@ function Header({title,username}) {
     </div>
   )
 }
-
-export default Header

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Avatar from "./Avatar"
 
-function SuggestUser({user, size}) {
+export default function SuggestUser({user, size}) {
   return (
     <div>
         <Link href={`/${user.username}`} >
@@ -16,5 +16,3 @@ function SuggestUser({user, size}) {
     </div>
   )
 }
-
-export default SuggestUser

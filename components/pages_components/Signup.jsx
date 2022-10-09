@@ -6,7 +6,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
 
-function Signup() {
+export default function Signup() {
 
     const router = useRouter()
     const name = useRef(), username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
@@ -91,5 +91,3 @@ function Signup() {
     </div>
   )
 }
-
-export default Signup

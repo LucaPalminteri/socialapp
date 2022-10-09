@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
@@ -11,7 +10,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-function Footer({activeNow}) {
+export default function Footer({activeNow}) {
 
   const [user, setUser] = useState()
 
@@ -60,5 +59,3 @@ function Footer({activeNow}) {
     </div>
   )
 }
-
-export default Footer

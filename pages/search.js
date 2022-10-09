@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Search from '../components/pages_components/Search';
 import axios from 'axios';
 
-function search({users}) {
+export default function search({users}) {
   return (
     <div>
         <Head>
@@ -19,9 +19,7 @@ function search({users}) {
   )
 }
 
-export default search
-
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
 
   const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const config = {

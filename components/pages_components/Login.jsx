@@ -6,7 +6,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
 
-function Login() {
+export default function Login() {
 
     const [showPassword, setShowPassword] = useState(false)
 
@@ -68,5 +68,3 @@ function Login() {
     </div>
   )
 }
-
-export default Login

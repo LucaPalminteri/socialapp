@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Header from '../components/core/Header';
 import Login from '../components/pages_components/Login';
 
-function login() {
+export default function login() {
   return (
     <div>
         <Head>
@@ -15,5 +15,3 @@ function login() {
     </div>
   )
 }
-
-export default login

@@ -3,7 +3,7 @@ import Create from '../components/pages_components/Create'
 import Footer from '../components/core/Footer'
 import Head from 'next/head';
 
-function create() {
+export default function create() {
   return (
     <div>
       <Head>
@@ -17,5 +17,3 @@ function create() {
     </div>
   )
 }
-
-export default create

@@ -1,11 +1,9 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState } from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Suggestions from '../core/Suggestions';
-import Avatar from '../core/Avatar';
-import Link from 'next/link';
 import SuggestUser from '../core/SuggestUser';
 
-function Search({users}) {
+export default function Search({users}) {
 
   const [searchUser, setSearchUser] = useState("")
 
@@ -29,5 +27,3 @@ function Search({users}) {
     </div>
   )
 }
-
-export default Search
