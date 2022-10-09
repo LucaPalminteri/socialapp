@@ -2,23 +2,23 @@ import axios from "axios";
 import { useState,useEffect } from 'react'
 import Link from "next/link";
 
-function FollowContainer({ideas, username}) {
+function FollowContainer({ideas, username, follows, followers}) {
 
   const [btnState, setBtnState] = useState(false)
-  const [followers, setFollowers] = useState()
-  const [follows, setFollows] = useState()
+  const [userFollowers, setUserFollowers] = useState()
+  const [userFollows, setUserFollows] = useState()
   const [currentUser, setCurrentUser] = useState({})
 
   useEffect(() => {
-    setFollowers(Math.floor(Math.random() * 1000))
-    setFollows(Math.floor(Math.random() * 300))
+    setUserFollowers(followers.length)
+    setUserFollows(follows.length)
     getUser() 
   }, [])
 
   const handleFollow = () => {
     setBtnState(prev => !prev)
-    if(btnState) setFollowers(prev => prev-1)
-    else setFollowers(prev => prev+1)
+    if(btnState) setUserFollowers(prev => prev-1)
+    else setUserFollowers(prev => prev+1)
   }
 
   const getUser = async () => {
@@ -34,23 +34,26 @@ function FollowContainer({ideas, username}) {
     <div className='profile-data'>
       <div className='data'>
         <h4>Followers</h4>
-        <h4>{followers}</h4> 
+        <h4>{userFollowers}</h4> 
       </div>
       <div className='data'>
         <h4>Follows</h4>
-        <h4>{follows}</h4>
+        <h4>{userFollows}</h4>
       </div>
       <div className='data'>
         <h4>Ideas</h4>
         <h4>{ideas}</h4>
       </div>
       {
-        currentUser == username ? 
-        <Link href='/edit-profile'>
-          <button className='btn-follow'>Edit Profile</button>
-        </Link>
+        currentUser == {} ?
+        <button>.</button>
         :
-        <button className='btn-follow' onClick={()=>handleFollow()}>{btnState ? 'Unfollow' : 'Follow'}</button>
+          currentUser == username ? 
+          <Link href={{pathname: '/edit-profile',query: 'example'}}>
+            <button className='btn-follow'>Edit Profile</button>
+          </Link>
+          :
+          <button className='btn-follow' onClick={()=>handleFollow()}>{btnState ? 'Unfollow' : 'Follow'}</button>
       }
     </div>
   )

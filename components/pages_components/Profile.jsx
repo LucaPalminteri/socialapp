@@ -1,34 +1,16 @@
-import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ProfileSection from '../core/ProfileSection';
 import FollowContainer from '../core/FollowContainer';
-import {supabase} from '../../utils/supabaseClient'
 import Avatar from '../core/Avatar';
 
-function Profile({ user, ideas }) {
-
-  const [currentUser, setCurrentUser] = useState({})
-  const [loading, setLoading] = useState(true)
-
-  useEffect(()=> {
-    getUser()
-  },[])
+function Profile({ user, ideas, follows, followers }) {
 
   const [width, setWidth] = useState(0);
 
   const updateSize = () => setWidth(window.innerWidth);
 
   useEffect(() => (window.onresize = updateSize), []);
-
-  const getUser = async () => {
-    try {
-      const {data} = await axios.get("/api/profile");
-      setCurrentUser(data)
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
 
   return (
     <div className='profile'>
@@ -42,12 +24,12 @@ function Profile({ user, ideas }) {
         /> */}
     </div>
     <div className='profile-img'>
-      <Avatar
-        url={user.avatar_url}
-        size={100}
-      />
+        <Avatar
+          url={user.avatar_url}
+          size={100}
+        />
     </div>
-    <FollowContainer ideas={ideas} username={user.username}/>
+    <FollowContainer ideas={ideas} username={user.username} follows={follows} followers={followers}/>
     <div className='profile-info'>
       <h3>{user.fullname}</h3>
       <h4>@{user.username}</h4>
