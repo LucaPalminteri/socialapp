@@ -33,7 +33,9 @@ export default function Header({title,username}) {
         title == 'HOMEPAGE' ? 
         <>
         <div>{' '}</div>
-        <ChatBubbleOutlineOutlinedIcon onClick={() => alert('Chat is cooming soon...')}  fontSize='medium' style={style}/>
+        <Link href={'/chat'}>
+        <ChatBubbleOutlineOutlinedIcon fontSize='medium' style={style}/>
+        </Link>
         </>
         :
         title == 'CREATE' ? 

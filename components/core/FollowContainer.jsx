@@ -6,7 +6,7 @@ import { supabase } from "../../utils/supabaseClient";
 export default function FollowContainer({ideas, user, follows, followers}) {
 
   const [userFollowers, setUserFollowers] = useState(followers.length)
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState({})  
   const [isFollowing, setIsFollowing] = useState(undefined)
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function FollowContainer({ideas, user, follows, followers}) {
         <button>.</button>
         :
           currentUser.user_id == user.user_id ? 
-          <Link href={{pathname: '/edit-profile',query: 'example'}}>
+          <Link href={{pathname: '/edit-profile'}}>
             <button className='btn-follow'>Edit Profile</button>
           </Link>
           :

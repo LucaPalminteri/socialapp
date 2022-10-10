@@ -13,7 +13,7 @@ export default function Avatar({ url, size }) {
   async function downloadImage(path) {
     try {
       const { data, error } = await supabase.storage
-        .from('public/socialapp/profile-img')
+        .from('socialapp/profile-img')
         .download(path)
       if (error) {
         throw error

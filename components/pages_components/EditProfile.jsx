@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Avatar from '../core/Avatar';
+import ChangeAvatar from '../core/ChangeAvatar'
+import { supabase } from '../../utils/supabaseClient';
 
 export default function EditProfile({countries, user}) {
 
@@ -10,8 +12,11 @@ export default function EditProfile({countries, user}) {
   dateOfBirth = useRef(), sexF = useRef(),sexM = useRef(), country = useRef(), bio = useRef()
 
   const [isUploadImage, setIsUploadImage] = useState(false)
+  const [avatar_url, setAvatarUrl] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    setAvatarUrl(user.avatar_url)
     name.current.value = user.fullname
     email.current.value = user.email
     dateOfBirth.current.value = user.date_of_birth
@@ -65,22 +70,40 @@ export default function EditProfile({countries, user}) {
       return true;
     }
 
+    async function updateProfile({ user, avatar_url }) {
+      try {
+        setLoading(true)
+  
+        const updates = {
+          ...user,
+          avatar_url
+        }
+  
+        let { error } = await supabase.from('user').upsert(updates)
+  
+        if (error) {
+          throw error
+        }
+      } catch (error) {
+        alert(error.message)
+      } finally {
+        setLoading(false)
+      }
+    }
+
   return (
     <div  className='edit-profile'>
         <form onSubmit={handleSubmit}>
           <div className='avatar-edit-container'>
-            <Avatar
-            url={user.avatar_url}
-            size={100}
+            <ChangeAvatar 
+              url={user.avatar_url}
+              size={100}
+              onUpload={(url) => {
+                setAvatarUrl(url)
+                updateProfile({ user, avatar_url: url })
+              }}
             />
-            <label onClick={()=> setIsUploadImage(prev => !prev)}>Change profile photo</label>
           </div>
-          {
-            isUploadImage ? 
-            <input ref={avatarImage} type='file' placeholder='Avatar Image'/>
-            :
-            <></>
-          }
           <label>Full Name</label>
           <input ref={name} type='text' placeholder='Full Name'/>
           <label>Bio</label>
