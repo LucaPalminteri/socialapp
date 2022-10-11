@@ -4,7 +4,6 @@ import { supabase } from '../../utils/supabaseClient'
 
 export default function Idea({idea, user}) {
 
-
   const router = useRouter()
 
   const handleViewProfile = () => {

@@ -1,4 +1,5 @@
 import Idea from '../core/Idea';
+import { supabase } from '../../utils/supabaseClient';
 
 export default function Homepage({users, ideas}) {
 
