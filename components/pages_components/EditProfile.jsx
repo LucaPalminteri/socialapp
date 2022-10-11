@@ -1,17 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import Avatar from '../core/Avatar';
 import ChangeAvatar from '../core/ChangeAvatar'
 import { supabase } from '../../utils/supabaseClient';
 
 export default function EditProfile({countries, user}) {
 
   const router = useRouter()
-  const name = useRef(), email = useRef(), avatarImage = useRef(),
-  dateOfBirth = useRef(), sexF = useRef(),sexM = useRef(), country = useRef(), bio = useRef()
+  const name = useRef(), email = useRef(), country = useRef(), bio = useRef(),
+  dateOfBirth = useRef(), sexF = useRef(),sexM = useRef()
 
-  const [isUploadImage, setIsUploadImage] = useState(false)
   const [avatar_url, setAvatarUrl] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -80,7 +78,7 @@ export default function EditProfile({countries, user}) {
         }
   
         let { error } = await supabase.from('user').upsert(updates)
-  
+
         if (error) {
           throw error
         }

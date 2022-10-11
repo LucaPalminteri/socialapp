@@ -39,8 +39,6 @@ export default function Avatar({ url, size, onUpload }) {
       const fileName = `${Math.random()}.${fileExt}`
       const filePath = `${fileName}`
 
-      console.log(file);
-
       let { error } = await supabase.storage
         .from('socialapp/profile-img')
         .upload(filePath, file)
@@ -51,7 +49,6 @@ export default function Avatar({ url, size, onUpload }) {
       }
 
       onUpload(filePath)
-      location.reload()
     } catch (error) {
       alert(error.message)
     } finally {
