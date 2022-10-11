@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 export default function chat({users, activeUser}) {
   return (
     <div>
-        <Header title={activeUser.username} />
+        <Header username={activeUser.username} showBackArrow={true} />
         <Chat users={users} activeUser={activeUser}/>
     </div>
   )
