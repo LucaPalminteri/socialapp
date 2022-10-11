@@ -1,12 +1,15 @@
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import axios from 'axios';
+import { supabase } from '../../utils/supabaseClient';
 
 export default function Create() {
 
   const router = useRouter();
   const title = useRef();
   const body = useRef();
+
+  
 
   const handleSubmit = async (e) => {
       e.preventDefault();

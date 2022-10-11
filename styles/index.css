@@ -448,7 +448,7 @@ button:active {
 }
 
 .create {
-  height: 100vh;
+  margin-top: 80px;
   width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;

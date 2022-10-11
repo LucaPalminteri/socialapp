@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import Avatar from './Avatar'
+import { supabase } from '../../utils/supabaseClient'
 
 export default function Idea({idea, user}) {
+
 
   const router = useRouter()
 

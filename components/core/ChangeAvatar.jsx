@@ -16,9 +16,9 @@ export default function Avatar({ url, size, onUpload }) {
       const { data, error } = await supabase.storage
         .from('socialapp/profile-img')
         .download(path)
-    //   if (error) {
-    //     throw error
-    //   }
+      if (error) {
+        throw error
+      }
       const url = URL.createObjectURL(data)
       setAvatarUrl(url)
     } catch (error) {
