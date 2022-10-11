@@ -2,7 +2,7 @@
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: $header-footer-color;
     position: fixed;
@@ -13,6 +13,28 @@
     height: 40px;
     z-index: 10;
     outline: 1px solid grey;
+
+    .header-left-icon {
+        position: absolute;
+        left: 10px;
+    }
+
+    .header-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .header-medium-icon {
+            margin-left: 10px;
+            font-weight: lighter;
+        }
+    }
+
+
+    .header-right-icon {
+        position: absolute;
+        right: 10px;
+    }
 
     h1 {
         text-align: center;
