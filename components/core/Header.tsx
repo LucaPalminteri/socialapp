@@ -4,8 +4,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Link from 'next/link';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import Avatar from '../core/Avatar'
-
+import Avatar from './Avatar'
+import React from 'react'
 
 export default function Header({ title, username, showBackArrow }) {
 
@@ -23,7 +23,7 @@ export default function Header({ title, username, showBackArrow }) {
       
       { title === 'chat' ?
         <div className='header-title'>
-          <Avatar size={30}/>
+          <Avatar size={30} url={""}/>
           <h3 className='header-medium-icon'>{username}</h3>
         </div>
         :

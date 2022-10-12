@@ -3,6 +3,8 @@ import Avatar from './Avatar'
 import { supabase } from '../../utils/supabaseClient'
 import React from 'react'
 
+
+
 export default function Idea({idea, user}) {
 
   const router = useRouter()
@@ -15,11 +17,11 @@ export default function Idea({idea, user}) {
     <div className='idea'>
       <div className='idea-header' >
         <div onClick={() => handleViewProfile()}>
-          <Avatar
-          url={user.avatar_url}
-          size={40}
-          onClick={() => handleViewProfile()}
-        />
+          <Avatar 
+          url={user.avatar_url} 
+          size={40} 
+          onClick={() => handleViewProfile()
+          } />
         </div>
           <h4 onClick={() => handleViewProfile()}>{user.username}</h4>
       </div>

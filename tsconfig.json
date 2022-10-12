@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_app.js", "pages/chat/[user].js", "pages/api/actions/follow.js"  ],
+, "pages/_app.js", "pages/chat/[user].js", "pages/api/actions/follow.js", "components/core/Idea.jsx", "components/core/ChatView.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../utils/supabaseClient'
 import Image from 'next/image'
+import React from 'react'
 
 export default function Avatar({ url, size }) {
 
@@ -10,7 +11,7 @@ export default function Avatar({ url, size }) {
     if (url) downloadImage(url)
   }, [url])
 
-  async function downloadImage(path) {
+  async function downloadImage(path: string) {
     try {
       const { data, error } = await supabase.storage
         .from('socialapp/profile-img')

@@ -906,6 +906,7 @@ button:active {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-bottom: 40px;
 }
 
 .chat-view .msg {
@@ -923,7 +924,7 @@ button:active {
   display: inline;
   padding: 8px;
   margin: 12px;
-  background-color: #DFDFDF;
+  background-color: #ECECEC;
   position: relative;
 }
 
@@ -942,8 +943,8 @@ button:active {
   bottom: 0;
   height: 10px;
   width: 10px;
-  background: -webkit-gradient(linear, right top, left bottom, from(#fff), color-stop(50%, #fff), color-stop(50%, #DFDFDF), to(#DFDFDF));
-  background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #DFDFDF 50%, #DFDFDF 100%);
+  background: -webkit-gradient(linear, right top, left bottom, from(#fff), color-stop(50%, #fff), color-stop(50%, #ECECEC), to(#ECECEC));
+  background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #ECECEC 50%, #ECECEC 100%);
 }
 
 .chat-view .reciever {
@@ -961,8 +962,8 @@ button:active {
   bottom: 0;
   height: 10px;
   width: 10px;
-  background: -webkit-gradient(linear, left top, right bottom, from(#fff), color-stop(50%, #fff), color-stop(50%, #DFDFDF), to(#DFDFDF));
-  background: linear-gradient(to bottom right, #fff 0%, #fff 50%, #DFDFDF 50%, #DFDFDF 100%);
+  background: -webkit-gradient(linear, left top, right bottom, from(#fff), color-stop(50%, #fff), color-stop(50%, #ECECEC), to(#ECECEC));
+  background: linear-gradient(to bottom right, #fff 0%, #fff 50%, #ECECEC 50%, #ECECEC 100%);
 }
 
 .chat-view footer {

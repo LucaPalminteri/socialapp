@@ -2,6 +2,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { supabase } from '../../utils/supabaseClient';
 import { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
+import React from 'react'
 
 function ChatView({user, activeUser}) {
 
@@ -10,7 +11,7 @@ function ChatView({user, activeUser}) {
 
   useEffect(()=> {
     getMessages()
-    console.log(document.body.scrollHeight);
+    
   },[])
 
   const getMessages = async () => {
@@ -19,11 +20,7 @@ function ChatView({user, activeUser}) {
 
       if (error) throw error
       setMessages(data)
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        left: 0,
-        behavior: 'smooth'
-      });
+      
     } catch(error) {
       alert(error)
     }
@@ -33,6 +30,11 @@ function ChatView({user, activeUser}) {
   supabase
   .channel('*')
   .on('postgres_changes', { event: '*', schema: '*' }, payload => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
     setMessages(prev => prev.concat({message:payload.new.message,user_id_sender:activeUser.user_id,user_id_reciever: user.user_id}))
   })
   .subscribe()
@@ -51,26 +53,15 @@ function ChatView({user, activeUser}) {
 
       inputMessage.current.value = ''
 
-      window.scrollTo({
-        top: document.body.scrollHeight + 1000,
-        left: 0,
-        behavior: 'smooth'
-      });
-
       if (error) throw error
     }catch(error) {
-      console.log(error);
+      console.error(error);
       alert(error)
     }
 
   }
 
   const arrayMessages = messages.map((message,index) => {
-
-    console.log(message);
-    console.log(user);
-    console.log(activeUser);
-    console.log("-----------------------------------");
 
   return (
     <div key={index} className={message.user_id_sender == activeUser.user_id ?  "msg sender" : message.user_id_reciever == activeUser.user_id ? "msg reciever" : ""}>
@@ -85,7 +76,7 @@ function ChatView({user, activeUser}) {
     <div className='chat-view'>
         <div>{arrayMessages}</div>
         <footer>
-          <div className='chat-input-container'>
+          <div id='go' className='chat-input-container'>
             <input autoFocus ref={inputMessage} type='text' placeholder='Message...' />
             <button onClick={handleSendMessage}><SendIcon/></button>
           </div>

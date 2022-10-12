@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../../utils/supabaseClient'
 import Image from 'next/image'
+import React from 'react'
 
 export default function Avatar({ url, size, onUpload }) {
     
@@ -26,7 +27,7 @@ export default function Avatar({ url, size, onUpload }) {
     }
   }
 
-  async function uploadAvatar(event) {
+  async function uploadAvatar(event: any) {
      try {
       setUploading(true)
 

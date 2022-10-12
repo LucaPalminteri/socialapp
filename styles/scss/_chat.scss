@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin-bottom: 40px;
 
     .msg {
         width: 100%;
@@ -31,7 +32,7 @@
             display: inline;
             padding: 8px;
             margin: 12px;
-            background-color: #DFDFDF;
+            background-color: #ECECEC;
             position: relative;
         }
     }
@@ -48,7 +49,7 @@
                 bottom: 0;
                 height: 10px;
                 width: 10px;
-                background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #DFDFDF 50%, #DFDFDF 100%);
+                background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #ECECEC 50%, #ECECEC 100%);
             }
         }
     }
@@ -66,7 +67,7 @@
                 bottom: 0;
                 height: 10px;
                 width: 10px;
-                background: linear-gradient(to bottom right, #fff 0%, #fff 50%, #DFDFDF 50%, #DFDFDF 100%);
+                background: linear-gradient(to bottom right, #fff 0%, #fff 50%, #ECECEC 50%, #ECECEC 100%);
             }
         }
     }
