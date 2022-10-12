@@ -3,6 +3,7 @@ import Header from '../components/core/Header';
 import axios from 'axios';
 import Footer from '../components/core/Footer';
 import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 
 export default function Post({user, ideas, follows, followers}) {
 
@@ -20,7 +21,7 @@ export default function Post({user, ideas, follows, followers}) {
   )
 }
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const currentUser = context.query.profile
 

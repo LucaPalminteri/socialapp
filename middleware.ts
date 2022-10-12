@@ -8,18 +8,6 @@ export async function middleware(request) {
     if (jwt == undefined) return NextResponse.redirect(new URL("/", request.url));
     
     // TODO: validate if the user is already logged in it shouldn't be able  to re log in
-
-    // if (jwt != undefined) {
-    //     console.log("undefindef bro");
-    //     if (request.nextUrl.pathname.includes("/login")) {
-    //         try {
-    //             await jwtVerify(jwt, new TextEncoder().encode(process.env.NEXT_PUBLIC_TOKEN_NAME));
-    //             return NextResponse.redirect(new URL("/homepage", request.url));
-    //         } catch (error) {
-    //             return NextResponse.next();
-    //         }
-    //     }
-    // }
     
     try {
         const { payload } = await jwtVerify(jwt,new TextEncoder().encode(process.env.NEXT_PUBLIC_TOKEN_NAME));

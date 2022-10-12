@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import ChatView from '../../components/core/ChatView'
 import jwt from "jsonwebtoken"; 
 import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
 function User({userActive, activeUser}) {
   const router = useRouter()
@@ -18,7 +19,7 @@ function User({userActive, activeUser}) {
 
 export default User
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const token = context.req.cookies.token;
 
   const chatUser = context.query.user;
