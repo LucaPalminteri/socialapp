@@ -1,4 +1,5 @@
 import Idea from "./Idea"
+import React from 'react'
 
 export default function ProfileSection({user, ideas}) {
 

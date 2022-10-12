@@ -1,5 +1,6 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Link from 'next/link';
+import React from 'react'
 
 export default function Chat({users, activeUser}) {
   return (

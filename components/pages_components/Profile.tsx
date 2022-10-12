@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ProfileSection from '../core/ProfileSection';
 import FollowContainer from '../core/FollowContainer';
 import Avatar from '../core/Avatar';
+import React from 'react'
 
 export default function Profile({ user, ideas, follows, followers }) {
 

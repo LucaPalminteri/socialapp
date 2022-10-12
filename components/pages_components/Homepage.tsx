@@ -1,5 +1,6 @@
 import Idea from '../core/Idea';
 import { supabase } from '../../utils/supabaseClient';
+import React from 'react'
 
 export default function Homepage({users, ideas}) {
 

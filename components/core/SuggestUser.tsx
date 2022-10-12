@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Avatar from "./Avatar"
+import React from 'react'
 
 export default function SuggestUser({user, size}) {
   return (

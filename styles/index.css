@@ -952,7 +952,6 @@ button:active {
 
 .chat-view .reciever p {
   border-bottom-left-radius: 0;
-  margin: 10px 0;
 }
 
 .chat-view .reciever p::before {

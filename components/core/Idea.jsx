@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import Avatar from './Avatar'
 import { supabase } from '../../utils/supabaseClient'
+import React from 'react'
 
 export default function Idea({idea, user}) {
 

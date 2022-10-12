@@ -27,7 +27,6 @@
         animation-duration: .3s;
         animation-name: slideMessage;
         p {
-            
             border-radius: 6px;
             display: inline;
             padding: 8px;
@@ -60,7 +59,6 @@
         
         p {
             border-bottom-left-radius:0 ;
-            margin: 10px 0;
             &::before {
                 content: '';
                 position: absolute;

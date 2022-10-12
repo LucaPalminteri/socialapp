@@ -33,7 +33,7 @@ function ChatView({user, activeUser}) {
   supabase
   .channel('*')
   .on('postgres_changes', { event: '*', schema: '*' }, payload => {
-    setMessages(prev => prev.concat({message:payload.new.message,user_id_sender:activeUser.user_id }))
+    setMessages(prev => prev.concat({message:payload.new.message,user_id_sender:activeUser.user_id,user_id_reciever: user.user_id}))
   })
   .subscribe()
 
@@ -66,8 +66,14 @@ function ChatView({user, activeUser}) {
   }
 
   const arrayMessages = messages.map((message,index) => {
+
+    console.log(message);
+    console.log(user);
+    console.log(activeUser);
+    console.log("-----------------------------------");
+
   return (
-    <div key={index} className={message.user_id_sender != activeUser.user_id ? "msg reciever" : "msg sender" }>
+    <div key={index} className={message.user_id_sender == activeUser.user_id ?  "msg sender" : message.user_id_reciever == activeUser.user_id ? "msg reciever" : ""}>
       <p>{message.message}</p>
     </div>
   )
