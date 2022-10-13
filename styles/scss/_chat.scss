@@ -21,6 +21,16 @@
     justify-content: flex-end;
     margin-bottom: 40px;
 
+    .btn-deleteChat {
+        margin: 0;
+        background-color: transparent;
+        color: red;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+    }
+
     .msg {
         width: 100%;
         padding: 6px 0;
