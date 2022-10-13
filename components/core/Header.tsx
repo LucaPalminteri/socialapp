@@ -22,9 +22,9 @@ export default function Header({ title, username, showBackArrow }) {
       </div> : <></>}
       
       { title === 'chat' ?
-        <div className='header-title'>
-          <Avatar size={30} url={""}/>
-          <h3 className='header-medium-icon'>{username}</h3>
+        <div className='header-title chat-title'>
+          <Avatar size={35} url={username.slice(username.indexOf(' ')+1 == 'null' ? 'user.jpg' : username.indexOf(' ')+1)}/>
+          <h3 className='header-medium-icon'>{username.slice(0,username.indexOf(' '))}</h3>
         </div>
         :
           <h3 className='header-medium-icon'>{username}</h3>
@@ -43,7 +43,8 @@ export default function Header({ title, username, showBackArrow }) {
         :
         title == 'CREATE' ? 
         <SearchOutlinedIcon fontSize='large' className='header-right-icon' />
-        : <></>
+        :
+        <></>
       }
     </div>
   )
