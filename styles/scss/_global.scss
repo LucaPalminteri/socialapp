@@ -51,6 +51,7 @@ button {
   height: 10vh;  
   opacity: 1;
   position: relative;
+  top: 40vh;
   transition: opacity linear 0.1s;    
 }
 
@@ -58,7 +59,7 @@ button {
 .spinner::before {
   animation: 2s linear infinite spinner;
   border: solid 5px #EFEFEF;
-  border-bottom-color: #90ee90;
+  border-bottom-color: #00008b;
   border-radius: 50%;
   content: "";
   height: 40px;

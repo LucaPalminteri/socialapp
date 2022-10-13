@@ -1,6 +1,7 @@
 import Idea from '../core/Idea';
 import { supabase } from '../../utils/supabaseClient';
 import React from 'react'
+import GoFollow from '../core/GoFollow'
 
 export default function Homepage({users, ideas}) {
 
@@ -8,7 +9,12 @@ export default function Homepage({users, ideas}) {
 
   return (
     <div className='homepage'>
-        {arrayIdeas.reverse()}
+      {
+        ideas.length == 0 ?
+        <GoFollow/>
+        :
+        arrayIdeas.reverse()
+      }
     </div>
   )
 }

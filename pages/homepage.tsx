@@ -5,8 +5,25 @@ import Head from 'next/head';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import jwt from "jsonwebtoken"; 
+import { useEffect, useState } from 'react';
+import Spinner from '../components/core/Spinner';
 
-export default function homepage({users,ideas}) {
+export default function Home({users,ideas}) {
+
+  const [ideasFoll, setideasFoll] = useState([""])
+
+  useEffect(() => {
+    getFollowByUser()
+  }, [])
+  
+  const getFollowByUser = async () => {
+    const {data} = await axios.get('/api/actions/follow-list')
+    setideasFoll(data);
+  }
+
+  let array:number[] = []
+  array = ideas.filter((idea:any,index:number)=> ideasFoll.some(userID => userID == idea.user_id))
+
   return (
     <div>
       <Head>
@@ -15,7 +32,15 @@ export default function homepage({users,ideas}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header title={'HOMEPAGE'} showBackArrow={false} username={undefined}/>
-      <Homepage users={users} ideas={ideas}/>
+      {
+        array.length == 0 ?
+        ideasFoll.length == 0 ?
+        <Homepage users={users} ideas={array}/>
+        :
+        <Spinner />
+        :
+        <Homepage users={users} ideas={array}/>
+      }
       <Footer activeNow='HOMEPAGE'/>
     </div>
   )
@@ -34,6 +59,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     }
   };
+  
   const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
   const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=neq.${activeUser.user_id}&order=created_at`,config);
 
