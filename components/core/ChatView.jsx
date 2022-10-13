@@ -3,21 +3,20 @@ import { supabase } from '../../utils/supabaseClient';
 import { useState,useEffect,useRef } from 'react';
 import axios from 'axios';
 import React from 'react'
+import Avatar from './ChangeAvatar';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function ChatView({user, activeUser}) {
-
   const [messages, setMessages] = useState([])
   const inputMessage = useRef()
 
   useEffect(()=> {
     getMessages()
-    
   },[])
-
+//.eq('user_id_sender',activeUser.user_id).eq('user_id_reciever',user.user_id)
   const getMessages = async () => {
     try {
-      const { data, error } = await supabase.from('messages').select()
-
+      const { data, error } = await supabase.from('messages').select().in(`user_id_sender`,[`${activeUser.user_id}`,`${user.user_id}`]).in(`user_id_reciever`,[`${activeUser.user_id}`,`${user.user_id}`])
       if (error) throw error
       setMessages(data)
       
@@ -61,6 +60,19 @@ function ChatView({user, activeUser}) {
 
   }
 
+  const handeDeleteChat = async() => {
+    try {
+    const { error } = await supabase
+    .from('messages')
+    .delete()
+    .in(`user_id_sender`,[`${activeUser.user_id}`,`${user.user_id}`]).in(`user_id_reciever`,[`${activeUser.user_id}`,`${user.user_id}`])
+    if (error) throw error
+    location.reload()
+    } catch(error) {
+      alert(error)
+    }
+  }
+
   const arrayMessages = messages.map((message,index) => {
 
   return (
@@ -74,6 +86,9 @@ function ChatView({user, activeUser}) {
 
   return (
     <div className='chat-view'>
+      <button className='btn-deleteChat' onClick={handeDeleteChat}>
+        <DeleteOutlineIcon />
+      </button>
         <div>{arrayMessages}</div>
         <footer>
           <div id='go' className='chat-input-container'>

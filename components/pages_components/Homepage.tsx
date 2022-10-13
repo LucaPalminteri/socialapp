@@ -8,7 +8,7 @@ export default function Homepage({users, ideas}) {
 
   return (
     <div className='homepage'>
-        {arrayIdeas.reverse().slice(0,10)}
+        {arrayIdeas.reverse()}
     </div>
   )
 }

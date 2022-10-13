@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
       }
     };
-    const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
+    const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at&username=neq.${activeUser.username}`,config);
   
     return {props: {users: users.data, activeUser}}
   }
