@@ -4,6 +4,7 @@ import Footer from '../components/core/Footer'
 import Head from 'next/head';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
+import jwt from "jsonwebtoken"; 
 
 export default function homepage({users,ideas}) {
   return (
@@ -22,6 +23,10 @@ export default function homepage({users,ideas}) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
+  const token = context.req.cookies.token;
+  const activeUser = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
+  console.log(activeUser);
+
   const baseURL = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const config = {
     headers:{
@@ -30,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   };
   const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
-  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&order=created_at`,config);
+  const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=neq.${activeUser.user_id}&order=created_at`,config);
 
   return {props: {users: users.data, ideas: ideas.data}}
 }
