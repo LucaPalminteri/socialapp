@@ -34,11 +34,12 @@ function ChatView({user, activeUser}) {
       left: 0,
       behavior: 'smooth'
     });
-    setMessages(prev => prev.concat({message:payload.new.message,user_id_sender:activeUser.user_id,user_id_reciever: user.user_id}))
+    setMessages(prev => prev.concat(payload.new))
   })
   .subscribe()
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (e) => {
+    e.preventDefault()
     const message = inputMessage.current.value
     if (message.trim() == "") return;
     try {
@@ -61,6 +62,7 @@ function ChatView({user, activeUser}) {
   }
 
   const handeDeleteChat = async() => {
+    if(confirm('This chat will be deleted permanently for both users, are you sure you want to continue?') == false) return;
     try {
     const { error } = await supabase
     .from('messages')
@@ -74,9 +76,8 @@ function ChatView({user, activeUser}) {
   }
 
   const arrayMessages = messages.map((message,index) => {
-
   return (
-    <div key={index} className={message.user_id_sender == activeUser.user_id ?  "msg sender" : message.user_id_reciever == activeUser.user_id ? "msg reciever" : ""}>
+    <div key={index} className={message.user_id_sender == activeUser.user_id ?  "msg sender" : "msg reciever" }>
       <p>{message.message}</p>
     </div>
   )
@@ -89,13 +90,13 @@ function ChatView({user, activeUser}) {
       <button className='btn-deleteChat' onClick={handeDeleteChat}>
         <DeleteOutlineIcon />
       </button>
-        <div>{arrayMessages}</div>
-        <footer>
+        <div className='chat-body'>{arrayMessages}</div>
+        <form onSubmit={handleSendMessage}>
           <div id='go' className='chat-input-container'>
             <input autoFocus ref={inputMessage} type='text' placeholder='Message...' />
-            <button onClick={handleSendMessage}><SendIcon/></button>
+            <button type='submit'><SendIcon/></button>
           </div>
-        </footer>
+        </form>
     </div>
   )
 }

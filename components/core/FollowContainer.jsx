@@ -1,11 +1,9 @@
 import axios from "axios";
 import { useState,useEffect } from 'react'
 import Link from "next/link";
-import { supabase } from "../../utils/supabaseClient";
-import RateReviewIcon from '@mui/icons-material/RateReview';
 import { useRouter } from "next/router";
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import { supabase } from "../../utils/supabaseClient";
+import SendIcon from '@mui/icons-material/Send';import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 export default function FollowContainer({ideas, user, follows, followers}) {
 
@@ -90,13 +88,10 @@ export default function FollowContainer({ideas, user, follows, followers}) {
           </button>
           <button onClick={handleChat} className="btn-chat">
           {
-              isFollowing == undefined ?
-              "..."
-              :
-              isFollowing ?
-                <RateReviewIcon /> 
-                : 
-                <SupervisorAccountIcon />
+              currentUser.user_id == user.user_id ?
+              "Si"
+              : 
+              <SendIcon/>
             }
             </button>
           </>
