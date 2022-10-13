@@ -11,7 +11,7 @@ export default function Profile({ user, ideas, follows, followers }) {
 
   const updateSize = () => setWidth(window.innerWidth);
 
-  useEffect(() => (window.onresize = updateSize), []);
+  //useEffect(() => (window.onresize = updateSize), []);
 
   return (
     <div className='profile'>

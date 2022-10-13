@@ -2,12 +2,17 @@ import axios from "axios";
 import { useState,useEffect } from 'react'
 import Link from "next/link";
 import { supabase } from "../../utils/supabaseClient";
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import { useRouter } from "next/router";
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 export default function FollowContainer({ideas, user, follows, followers}) {
 
   const [userFollowers, setUserFollowers] = useState(followers.length)
   const [currentUser, setCurrentUser] = useState({})  
   const [isFollowing, setIsFollowing] = useState(undefined)
+  const route = useRouter()
 
   useEffect(() => {
     getUser() 
@@ -44,6 +49,10 @@ export default function FollowContainer({ideas, user, follows, followers}) {
     }
   };
 
+  const handleChat = ()=> {
+    route.push(`/chat/${user.username}`);
+  }
+
   return (
     <div className='profile-data'>
       <div className='data'>
@@ -67,10 +76,11 @@ export default function FollowContainer({ideas, user, follows, followers}) {
             <button className='btn-follow'>Edit Profile</button>
           </Link>
           :
+          <>
           <button className='btn-follow' onClick={()=>handleFollow()}>
             {
               isFollowing == undefined ?
-              "..."
+              "Loading..."
               :
               isFollowing ?
                 'Unfollow' 
@@ -78,6 +88,18 @@ export default function FollowContainer({ideas, user, follows, followers}) {
                 'Follow' 
             }
           </button>
+          <button onClick={handleChat} className="btn-chat">
+          {
+              isFollowing == undefined ?
+              "..."
+              :
+              isFollowing ?
+                <RateReviewIcon /> 
+                : 
+                <SupervisorAccountIcon />
+            }
+            </button>
+          </>
       }
     </div>
   )
