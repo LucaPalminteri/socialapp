@@ -170,6 +170,7 @@ button:active {
   height: 10vh;
   opacity: 1;
   position: relative;
+  top: 40vh;
   -webkit-transition: opacity linear 0.1s;
   transition: opacity linear 0.1s;
 }
@@ -178,7 +179,7 @@ button:active {
   -webkit-animation: 2s linear infinite spinner;
           animation: 2s linear infinite spinner;
   border: solid 5px #EFEFEF;
-  border-bottom-color: #90ee90;
+  border-bottom-color: #00008b;
   border-radius: 50%;
   content: "";
   height: 40px;
@@ -595,6 +596,16 @@ button:active {
   margin: 15px;
 }
 
+.idea .idea-header .btn-delete-idea {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  width: 40px;
+  color: #F00;
+  border: none;
+}
+
 .idea h2 {
   padding: 4px 8px;
   border-radius: 8px;
@@ -628,8 +639,27 @@ button:active {
 }
 
 .homepage {
-  margin-top: 60px;
+  margin-top: 50px;
   margin-bottom: 100px;
+}
+
+.homepage .go-follow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 80px;
+  background-color: #EAF3FA;
+}
+
+.homepage .go-follow h3 {
+  color: #00008b;
+}
+
+.homepage .go-follow button {
+  padding: 18px 32px;
+  font-size: 20px;
 }
 
 .settings {

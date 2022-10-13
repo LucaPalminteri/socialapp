@@ -1,14 +1,34 @@
 import { useRouter } from 'next/router'
 import Avatar from './Avatar'
-import { supabase } from '../../utils/supabaseClient'
-import React from 'react'
-
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { supabase } from '../../utils/supabaseClient';
 
 export default function Idea({idea, user}) {
 
   const router = useRouter()
 
+  const [isCurrentUser, setIsCurrentUser] = useState(false)
+  
+  useEffect(() => {
+    getCurrentUser()
+  }, [])
+  
+  const handleDeleteIdea = async () => {
+    if(confirm('Are you sure you want to delete this idea?') == false) return;
+    try {
+      const { data, error } = await supabase.from('ideas').delete('id',idea.id)
+      if (error) throw error
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  const getCurrentUser = async () => {
+    const {data} = await axios.get('/api/profile')
+    if (data.user_id == user.user_id) setIsCurrentUser(true)
+  }
   const handleViewProfile = () => {
     router.push(`/${user.username}`)
   }
@@ -24,6 +44,7 @@ export default function Idea({idea, user}) {
           } />
         </div>
           <h4 onClick={() => handleViewProfile()}>{user.username}</h4>
+          {isCurrentUser? <button onClick={handleDeleteIdea} className='btn-delete-idea'><DeleteOutlineIcon fontSize='small' /></button> : <></>}
       </div>
         <h2>{idea.title}</h2>
         <p>{idea.body}</p>
