@@ -11,6 +11,17 @@
 
 .chat {
     padding-top: 80px;
+    .chat-search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+            width: 70%;
+            padding: 6px;
+            margin-left: 2px;
+        }
+    }
 }
 
 .chat-view {

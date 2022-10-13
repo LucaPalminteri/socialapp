@@ -19,6 +19,11 @@ function ChatView({user, activeUser}) {
       const { data, error } = await supabase.from('messages').select().in(`user_id_sender`,[`${activeUser.user_id}`,`${user.user_id}`]).in(`user_id_reciever`,[`${activeUser.user_id}`,`${user.user_id}`])
       if (error) throw error
       setMessages(data)
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        left: 0,
+        behavior: 'smooth'
+      });
       
     } catch(error) {
       alert(error)
