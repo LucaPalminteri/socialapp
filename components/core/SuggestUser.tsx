@@ -1,8 +1,11 @@
 import Link from "next/link"
 import Avatar from "./Avatar"
 import React from 'react'
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
 export default function SuggestUser({user, size}) {
+
   return (
     <div>
         <Link href={`/${user.username}`} >
@@ -12,6 +15,10 @@ export default function SuggestUser({user, size}) {
             size={size}
             />
             <h4>{user.username}</h4>
+            <div className="user-info">
+              <p>{user.account_data[0]?.ideas}<LightbulbOutlinedIcon fontSize="small"/></p>
+              <p>{user.account_data[0]?.followers}<PeopleOutlineOutlinedIcon fontSize="small"/></p>
+            </div>
         </div>
         </Link>
     </div>
