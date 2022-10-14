@@ -3,6 +3,8 @@ import Link from 'next/link';
 import React from 'react'
 import SuggestUser from '../core/SuggestUser';
 import Avatar from '../core/Avatar';
+import Image from 'next/image';
+
 
 export default function Chat({users, activeUser}) {
 
@@ -20,6 +22,7 @@ export default function Chat({users, activeUser}) {
         <input type='text' placeholder='Search someone to chat...' />
         <button><SearchOutlinedIcon fontSize='small'/></button>
       </div>
+      <Image src={'/chat.jpg'} width={300} height={300} alt=''/>
       {arrayChats}
     </div>
   )

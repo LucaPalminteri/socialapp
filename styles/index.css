@@ -98,7 +98,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: black;
   background: white;
   text-align: center;
@@ -733,7 +733,10 @@ button:active {
 }
 
 .search .suggestion-item {
+  background-color: #e8f4f8;
   padding: 0 50px;
+  margin: 10px;
+  border-radius: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -757,6 +760,10 @@ button:active {
 
 .search .suggestions {
   border-top: 1px solid grey;
+}
+
+.search .suggestions h2 {
+  color: #00008b;
 }
 
 .search .suggestions .suggestion-item {

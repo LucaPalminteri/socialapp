@@ -9,10 +9,10 @@ export default function Search({users}) {
 
   let usersFilter = users.filter(user => user.username.includes(searchUser))
   if(searchUser == "") usersFilter = []
-  const arrayUsersFilter = usersFilter.map((user,index) => <SuggestUser key={index} user={user} size={40}/>)
+  const arrayUsersFilter = usersFilter.map((user,index) => <SuggestUser key={index} user={user} size={40}/>).slice(0,5)
 
   const inputHandler = (e) => {
-    setSearchUser(e.target.value);
+    setSearchUser(e.target.value.toLowerCase());
   }
 
   return (
@@ -22,7 +22,6 @@ export default function Search({users}) {
         <button><SearchOutlinedIcon fontSize='small'/></button>
       </div>
       {arrayUsersFilter}
-        
       <Suggestions users={users}/>
     </div>
   )

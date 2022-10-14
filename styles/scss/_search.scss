@@ -26,7 +26,10 @@
     }
     
     .suggestion-item {
+        background-color: #e8f4f8;
         padding: 0 50px;
+        margin: 10px;
+        border-radius: 12px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -43,6 +46,10 @@
 
     .suggestions {
         border-top: 1px solid grey;
+
+        h2 {
+            color: #00008b;
+        }
 
         .suggestion-item {
             padding: 0 50px;
