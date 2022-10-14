@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react'
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { supabase } from "../../utils/supabaseClient";
-import SendIcon from '@mui/icons-material/Send';import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import SendIcon from '@mui/icons-material/Send';
 
 export default function FollowContainer({ideas, user, follows, followers}) {
 
@@ -13,7 +13,8 @@ export default function FollowContainer({ideas, user, follows, followers}) {
   const route = useRouter()
 
   useEffect(() => {
-    getUser() 
+    getUser()
+    
   }, [])
 
   
@@ -29,12 +30,29 @@ export default function FollowContainer({ideas, user, follows, followers}) {
     setUserFollowers(prev => isFollowing ? prev-1 : prev+1)
   }
 
+  const updateUserData = async ()=> {
+    try {
+      const { data, error} = await supabase
+      .from('account_data')
+      .update(
+        {
+          followers:userFollowers,
+          following:follows.length,
+          ideas:ideas.length
+        }
+      )
+      .eq('user_id',user?.user_id)
+      if (error) throw error
+    } catch (error) {
+      alert(error)
+    }
+  }
+  if (currentUser.user_id != undefined) updateUserData()
   const followUser = async ()=> {
-     
       const {data} = await supabase.from('user_follows').select().eq('user_id',currentUser.user_id).eq('follow_user_id',user.user_id)
       if (data.length != 0) setIsFollowing(true)
       else if (data != []) setIsFollowing(false)
-    
+      
   }
   if (currentUser.user_id != undefined) followUser()
   
