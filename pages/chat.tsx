@@ -4,13 +4,15 @@ import axios from 'axios';
 import jwt from "jsonwebtoken"; 
 import { GetServerSideProps } from 'next';
 
-export default function chat({users, activeUser}) {
+export default function chat({users, activeUser, chats}) {
+
+  console.log(chats);
 
   // TODO: filter by user that have chat with
   return (
     <div>
         <Header username={activeUser.username} showBackArrow={true} title={undefined}/>
-        <Chat users={users} activeUser={activeUser}/>
+        <Chat users={users} activeUser={activeUser} chats={chats}/>
     </div>
   )
 }
@@ -26,7 +28,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
       }
     };
-    const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at&username=neq.${activeUser.username}`,config);
+    const users = await axios.get(`${baseURL}/rest/v1/users?select=*&order=created_at&username=neq.${activeUser.username}`,config);
+    const chats = await axios.get(`${baseURL}/rest/v1/user_messages?select=*&or=(user_id_sender.eq.${activeUser.user_id},user_id_reciever.eq.${activeUser.user_id})`,config);
   
-    return {props: {users: users.data, activeUser}}
+    return {props: {users: users.data, activeUser,chats: chats.data}}
   }

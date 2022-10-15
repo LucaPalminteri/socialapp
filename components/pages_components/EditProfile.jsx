@@ -77,7 +77,7 @@ export default function EditProfile({countries, user}) {
           avatar_url
         }
   
-        let { error } = await supabase.from('user').upsert(updates)
+        let { error } = await supabase.from('users').upsert(updates)
 
         if (error) {
           throw error

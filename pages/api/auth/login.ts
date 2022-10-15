@@ -9,7 +9,7 @@ const loginHandler = (req,res) => {
     async function fetchUsers() {
       let isUser = false
       let currentUser = {}
-      const { data } = await supabase.from("user").select();
+      const { data } = await supabase.from("users").select();
       isUser = data.some(user => {
         if(user.username == username && compare(user.password,password)) {
           currentUser = user

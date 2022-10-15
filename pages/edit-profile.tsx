@@ -33,7 +33,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   const currentUser = jwt.verify(token, process.env.NEXT_PUBLIC_TOKEN_NAME);
-  const user = await axios.get(`${baseURL}/rest/v1/user?select=*&user_id=eq.${currentUser.user_id}`,config);
+  const user = await axios.get(`${baseURL}/rest/v1/users?select=*&user_id=eq.${currentUser.user_id}`,config);
 
   const baseURLcountry = 'https://countrycode.dev/api/countries';
   const {data} = await axios.get(baseURLcountry);

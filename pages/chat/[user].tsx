@@ -31,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     }
   };
-  const user = await axios.get(`${baseURL}/rest/v1/user?select=*&username=eq.${chatUser}`,config);
+  const user = await axios.get(`${baseURL}/rest/v1/users?select=*&username=eq.${chatUser}`,config);
 
   if (user.data[0].user_id == activeUser.user_id) return {redirect: {permanent: false, destination: '/chat'}}
 

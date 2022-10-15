@@ -31,6 +31,23 @@
             padding: 5px 12px;
         }
     }
+
+    .chat-item {
+        background-color: #EFEFEF;
+        margin: 10px 20px;
+        border-radius: 10px;
+
+        .info-chat {
+            display: flex;
+            align-items: center;
+            margin-left: 10%;
+            padding: 10px 0;
+
+            p {
+                margin-left: 15px;
+            }
+        }
+    }
 }
 
 .chat-view {

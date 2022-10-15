@@ -6,7 +6,7 @@ const signupHandler = (req,res) => {
 
     const createUser = async () => {
         const { data, error } = await supabase
-            .from('user')
+            .from('users')
             .insert([{
                 fullname: name,
                 email,
@@ -15,15 +15,6 @@ const signupHandler = (req,res) => {
                 date_of_birth: dateOfBirth
             }],{upsert: false})
             .select('user_id')
-
-            console.log('---------------------------------------------');
-            console.log('---------------------------------------------');
-            console.log('---------------------------------------------');
-            console.log('---------------------------------------------');
-            console.log('---------------------------------------------');
-            console.log('---------------------------------------------');
-
-            console.log(data[0].user_id);
 
             try {
                 const insert = await supabase

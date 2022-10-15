@@ -1,17 +1,28 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Link from 'next/link';
 import React from 'react'
-import SuggestUser from '../core/SuggestUser';
 import Avatar from '../core/Avatar';
 import Image from 'next/image';
+import Spinner from '../core/Spinner';
 
 
-export default function Chat({users, activeUser}) {
+export default function Chat({users, activeUser, chats}) {  
 
-  const arrayChats = users.map((user:any,index:number) => {
+  let aux = []
+  const arrChats = chats.map((chat,index) => {
+    aux.push(chat.user_id_reciever)
+    if(chat.username == activeUser.username) {
+      if(aux.some(id => id == chat.user_id_sender)) return ;
+      [chat] = users.filter(user => user.user_id == chat.user_id_sender)
+    }
     return (
-     <div key={index} >
-      <Link href={`/chat/${user?.username}`}><div style={{display: 'flex', alignItems: 'center', marginLeft: '20%',padding: '10px 0'}}><Avatar url={user.avatar_url} size={40} />{user.username}</div></Link>
+     <div key={index} className='chat-item'>
+      <Link href={`/chat/${chat?.username}`}>
+        <div className='info-chat'>
+          <Avatar url={chat.avatar_url} size={50} />
+          <p>{chat.username}</p>
+        </div>
+      </Link>
      </div> 
     )
   })
@@ -22,9 +33,16 @@ export default function Chat({users, activeUser}) {
         <input type='text' placeholder='Search someone to chat...' />
         <button><SearchOutlinedIcon /></button>
       </div>
-      <h3>Seems you don&apos;t have chats</h3>
-      <Image src={'/chat.jpg'} width={350} height={350} alt=''/>
-      <h2>Use the text input above to search friends to chat</h2>
+      {
+        chats.length == 0 ?
+        <div>
+          <h3>Seems you don&apos;t have chats</h3>
+          <Image src={'/chat.jpg'} width={350} height={350} alt=''/>
+          <h2>Use the text input above to search friends to chat</h2>
+        </div>
+        :
+        arrChats
+      }
     </div>
   )
 }

@@ -9,7 +9,7 @@ export default function handleUsers(req, res) {
 
     const updateUser = async () => {
         const { data,error } = await supabase
-        .from("user")
+        .from("users")
         .update(req.body)
         .eq('user_id',currentUsername.user_id)
         return res.status(200).json(data)

@@ -60,7 +60,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   };
   
-  const users = await axios.get(`${baseURL}/rest/v1/user?select=*&order=created_at`,config);
+  const users = await axios.get(`${baseURL}/rest/v1/users?select=*&order=created_at`,config);
   const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=neq.${activeUser.user_id}&order=created_at`,config);
 
   return {props: {users: users.data, ideas: ideas.data}}
