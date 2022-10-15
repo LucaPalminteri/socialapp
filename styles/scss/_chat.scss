@@ -10,7 +10,7 @@
 }
 
 .chat {
-    padding-top: 80px;
+    padding-top: 60px;
     .chat-search-container {
         display: flex;
         justify-content: center;
@@ -18,8 +18,17 @@
 
         input {
             width: 70%;
-            padding: 6px;
-            margin-left: 2px;
+            padding: 8px;
+            margin: 2px;
+
+            &:focus {
+                outline: 1px solid #343434;
+                transform: scale(1.015);
+            }
+        }
+
+        button {
+            padding: 5px 12px;
         }
     }
 }

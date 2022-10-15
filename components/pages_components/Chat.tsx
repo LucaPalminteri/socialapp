@@ -20,10 +20,11 @@ export default function Chat({users, activeUser}) {
     <div className="chat">
       <div className='chat-search-container'>
         <input type='text' placeholder='Search someone to chat...' />
-        <button><SearchOutlinedIcon fontSize='small'/></button>
+        <button><SearchOutlinedIcon /></button>
       </div>
-      <Image src={'/chat.jpg'} width={300} height={300} alt=''/>
-      {arrayChats}
+      <h3>Seems you don&apos;t have chats</h3>
+      <Image src={'/chat.jpg'} width={350} height={350} alt=''/>
+      <h2>Use the text input above to search friends to chat</h2>
     </div>
   )
 }

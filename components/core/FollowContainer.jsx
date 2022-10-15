@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { supabase } from "../../utils/supabaseClient";
 import SendIcon from '@mui/icons-material/Send';
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
 
 export default function FollowContainer({ideas, user, follows, followers}) {
 
@@ -104,16 +105,16 @@ export default function FollowContainer({ideas, user, follows, followers}) {
                 'Follow' 
             }
           </button>
-          <button onClick={handleChat} className="btn-chat">
-          {
-              currentUser.user_id == user.user_id ?
-              "Si"
-              : 
-              <SendIcon/>
-            }
-            </button>
           </>
       }
+          <button onClick={handleChat} className="btn-chat">
+            {
+              currentUser.user_id == user.user_id ?
+              <PeopleOutlineIcon/>
+              :
+              <SendIcon/>
+            }
+          </button>
     </div>
   )
 }

@@ -4,24 +4,24 @@ import Image from 'next/image'
 
 export default function Index() {
   return (
-    <div className=''>
-        
+    <div className='index'>
+      <div className='logo'>
         <Image src={'/ideagram-horizontal.png'} width={300} height={90} alt={''}/>
-        <Image src={'/ideas-team-5.jpg'} width={300} height={300} alt={''} />
-
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-      <Link href='/login'>
-            <button>Login</button>
+      </div>
+      <div className='main-img'>
+        <Image src={'/ideas-team-5.jpg'} width={300} height={300} alt={''} style={{borderRadius: 20}}/>
+      </div>
+      <div className='btn-container'>
+        <Link href='/login'>
+          <button>Login</button>
         </Link>
-      <Link href='/signup'>
+        <Link href='/signup'>
             <button>Create account</button>
         </Link>
-        </div>
-
-        {/* <Image src={'/ideas-team-1.jpg'} width={300} height={300} alt={''}/>
-        <Image src={'/ideas-team-2.jpg'} width={300} height={300} alt={''}/>
-        <Image src={'/ideas-team-3.jpg'} width={300} height={300} alt={''}/>
-        <Image src={'/ideas-team-4.jpg'} width={300} height={300} alt={''}/> */}
+      </div>
+      {/* <div className='description'>
+        <h2>A small project made for connect better ideas</h2>
+      </div> */}
     </div>
   )
 }

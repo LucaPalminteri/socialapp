@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import { GetServerSideProps } from 'next';
 
 export default function chat({users, activeUser}) {
+
+  // TODO: filter by user that have chat with
   return (
     <div>
         <Header username={activeUser.username} showBackArrow={true} title={undefined}/>

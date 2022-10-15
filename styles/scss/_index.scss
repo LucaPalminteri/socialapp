@@ -1,0 +1,32 @@
+.index {
+    height: 100vh;
+
+    .logo {
+        background-color: #fff;
+    }
+    .main-img {
+        background-color: #CFCFCF;
+        padding: 20px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        margin: 26px;
+    }
+
+    .description {
+        background-color: #A9A9A9;
+        padding: 5px 10px;
+
+        h2 {
+            background-color: #EFEFEF;
+            border-radius: 10px;
+        }
+    }
+    button {
+        margin-top: 0px;
+        font-size: 20px;
+        padding: 14px;
+    }
+}

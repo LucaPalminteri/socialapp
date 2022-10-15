@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { supabase } from '../../utils/supabaseClient';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 
 export default function Idea({idea, user}) {
 
@@ -33,6 +34,10 @@ export default function Idea({idea, user}) {
     router.push(`/${user.username}`)
   }
 
+  const handleArchiveIdea = () => {
+
+  }
+
   return (
     <div className='idea'>
       <div className='idea-header' >
@@ -44,7 +49,12 @@ export default function Idea({idea, user}) {
           } />
         </div>
           <h4 onClick={() => handleViewProfile()}>{user.username}</h4>
-          {isCurrentUser? <button onClick={handleDeleteIdea} className='btn-delete-idea'><DeleteOutlineIcon fontSize='small' /></button> : <></>}
+          {
+            isCurrentUser? 
+            <button onClick={handleDeleteIdea} className='btn-delete-idea'><DeleteOutlineIcon fontSize='small' /></button> 
+            : 
+            <button onClick={handleArchiveIdea} className='btn-archive-idea'><BookmarkBorderIcon fontSize='small' /></button> 
+          }
       </div>
         <h2>{idea.title}</h2>
         <p>{idea.body}</p>
