@@ -14,6 +14,9 @@ This is a personal project, I'm doing it because I want to keep practicing and l
 - [Material UI Icons](https://www.npmjs.com/package/@material-ui/icons)
 - [Material-UI](https://www.npmjs.com/package/@material-ui/core)
 
+## Bad days
+    16/10/2022: I try for almost 8 hours to implement simple task and I couldn't finish even one. I feel so frustrated.
+
 Get In Touch: 
           <a href="https://lucapalminteri.com/" target="_blank">Website<a> | 
           <a href="mailto:lucapalminteri02@gmail.com" target="_blank">Email<a> |

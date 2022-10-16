@@ -6,8 +6,6 @@ import { GetServerSideProps } from 'next';
 
 export default function chat({users, activeUser, chats}) {
 
-  console.log(chats);
-
   // TODO: filter by user that have chat with
   return (
     <div>
