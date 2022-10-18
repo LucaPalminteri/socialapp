@@ -12,14 +12,20 @@
 .chat {
     padding-top: 60px;
     .chat-search-container {
+
+        margin: 0 20px;
         display: flex;
         justify-content: center;
         align-items: center;
 
         input {
-            width: 70%;
-            padding: 8px;
+            width: 90%;
+            padding: 12px;
             margin: 2px;
+            margin-right: 5px;
+            border-radius: 8px;
+            border: none;
+            background-color: #ECECEC;
 
             &:focus {
                 outline: 1px solid #343434;
@@ -28,7 +34,9 @@
         }
 
         button {
-            padding: 5px 12px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            margin: 0;
         }
     }
 
@@ -47,6 +55,14 @@
                 margin: 6px;
                 text-align: left;
                 margin-left: 15px;
+
+                &:nth-child(1) {
+                    font-weight: 500;
+                }
+                &:nth-child(2) {
+                    font-weight: 300;
+                    color: #898989;
+                }
             }
         }
     }

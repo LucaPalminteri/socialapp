@@ -994,6 +994,7 @@ button:active {
 }
 
 .chat .chat-search-container {
+  margin: 0 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1006,9 +1007,13 @@ button:active {
 }
 
 .chat .chat-search-container input {
-  width: 70%;
-  padding: 8px;
+  width: 90%;
+  padding: 12px;
   margin: 2px;
+  margin-right: 5px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ECECEC;
 }
 
 .chat .chat-search-container input:focus {
@@ -1018,7 +1023,9 @@ button:active {
 }
 
 .chat .chat-search-container button {
-  padding: 5px 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin: 0;
 }
 
 .chat .chat-item {
@@ -1042,6 +1049,15 @@ button:active {
   margin: 6px;
   text-align: left;
   margin-left: 15px;
+}
+
+.chat .chat-item .info-chat div p:nth-child(1) {
+  font-weight: 500;
+}
+
+.chat .chat-item .info-chat div p:nth-child(2) {
+  font-weight: 300;
+  color: #898989;
 }
 
 .chat-view {
@@ -1177,17 +1193,149 @@ button:active {
           transition-duration: .2s;
 }
 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeUp {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes fadeLeft {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(-15px);
+            transform: translateX(-15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(-15px);
+            transform: translateX(-15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes fadeRight {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(15px);
+            transform: translateX(15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(15px);
+            transform: translateX(15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
 .index {
   height: 100vh;
 }
 
 .index .logo {
   background-color: #fff;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 .index .main-img {
-  background-color: #CFCFCF;
+  background-color: #F0F0F0;
   padding: 20px;
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 .index .btn-container {
@@ -1214,5 +1362,30 @@ button:active {
   margin-top: 0px;
   font-size: 20px;
   padding: 14px;
+}
+
+.index button:nth-child(1) {
+  -webkit-animation-name: fadeLeft;
+          animation-name: fadeLeft;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.index button:nth-child(2) {
+  -webkit-animation-name: fadeRight;
+          animation-name: fadeRight;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.index footer {
+  -webkit-animation-name: fadeUp;
+          animation-name: fadeUp;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
 }
 /*# sourceMappingURL=index.css.map */

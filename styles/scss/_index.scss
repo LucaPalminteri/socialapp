@@ -1,12 +1,68 @@
+@keyframes fadeIn {
+    0% {
+        opacity: .3;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: .3;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeLeft {
+    0% {
+        opacity: .3;
+        transform: translateX(-15px);
+    }
+    50% {
+        opacity: .5;
+        transform: translateX(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRight {
+    0% {
+        opacity: .3;
+        transform: translateX(15px);
+    }
+    50% {
+        opacity: .5;
+        transform: translateX(-8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .index {
     height: 100vh;
 
     .logo {
         background-color: #fff;
+        animation-name: fadeIn;
+        animation-duration: 1s;
     }
     .main-img {
-        background-color: #CFCFCF;
+        background-color: #F0F0F0;
         padding: 20px;
+        animation-name: fadeIn;
+        animation-duration: 1s;
     }
 
     .btn-container {
@@ -28,5 +84,22 @@
         margin-top: 0px;
         font-size: 20px;
         padding: 14px;
+        &:nth-child(1) {
+            animation-name: fadeLeft;
+            animation-duration: 1s;
+        }
+        &:nth-child(2) {
+            animation-name: fadeRight;
+            animation-duration: 1s;
+        }
+    }
+
+    footer {
+        animation-name: fadeUp;
+        animation-duration: 1s;
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        right: 0;
     }
 }
