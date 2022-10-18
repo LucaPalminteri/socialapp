@@ -41,9 +41,9 @@ export default function Header({ title, username, showBackArrow }) {
           <ChatBubbleOutlineOutlinedIcon fontSize='medium' className='header-right-icon' />
         </Link>
         :
-        title == 'CREATE' ? 
-        <SearchOutlinedIcon fontSize='large' className='header-right-icon' />
-        :
+        // title == 'CREATE' ? 
+        // <SearchOutlinedIcon fontSize='large' className='header-right-icon' />
+        // :
         <></>
       }
     </div>

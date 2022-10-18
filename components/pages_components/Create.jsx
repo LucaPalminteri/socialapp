@@ -40,7 +40,6 @@ export default function Create() {
 
   return (
     <div className='create'>
-        <h1>Create</h1>
         <form onSubmit={handleSubmit}>
             <input type='text' ref={title} placeholder='Title of the idea'/>
             <textarea ref={body} placeholder="Type your idea here ..."/>
