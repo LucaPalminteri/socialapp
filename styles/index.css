@@ -1026,6 +1026,7 @@ button:active {
   padding: 6px 10px;
   border-radius: 8px;
   margin: 0;
+  margin-left: 5px;
 }
 
 .chat .chat-item {
@@ -1387,5 +1388,101 @@ button:active {
   bottom: -50px;
   left: 0;
   right: 0;
+}
+
+@keyframes fadeLeft {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(-15px);
+            transform: translateX(-15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: .3;
+    -webkit-transform: translateX(15px);
+            transform: translateX(15px);
+  }
+  50% {
+    opacity: .5;
+    -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+
+.notifications {
+  padding: 60px 0;
+}
+
+.notifications .btn-deleteChat {
+  margin: 0;
+  background-color: transparent;
+  color: red;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+}
+
+.notifications .notification-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #efefef;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+}
+
+.notifications .notification-item p {
+  margin-left: 10px;
+}
+
+.notifications .notification-item p span {
+  font-weight: 700;
+}
+
+.notifications .message {
+  background-color: #9F61F0;
+}
+
+.notifications .follow {
+  background-color: #0d92cf;
+}
+
+.notifications .odd {
+  -webkit-animation-name: fadeLeft;
+          animation-name: fadeLeft;
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
+}
+
+.notifications .even {
+  -webkit-animation-name: fadeRight;
+          animation-name: fadeRight;
+  -webkit-animation-duration: .5s;
+          animation-duration: .5s;
 }
 /*# sourceMappingURL=index.css.map */

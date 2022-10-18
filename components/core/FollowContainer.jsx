@@ -25,6 +25,7 @@ export default function FollowContainer({ideas, user, follows, followers}) {
     }
     else {
       const {data} =  await axios.post('/api/actions/follow',{user_id: currentUser.user_id, follow_user_id: user.user_id})
+      sendNotification()
     }
 
     setIsFollowing(prev => !prev)
@@ -69,6 +70,24 @@ export default function FollowContainer({ideas, user, follows, followers}) {
   const handleChat = ()=> {
     route.push(`/chat/${user.username}`);
   }
+
+  const sendNotification = async () => {
+    try {
+      const {data,error} = await supabase.from('notifications')
+      .insert([{
+        user_id: user.user_id,
+        type: 'follow',
+        from: currentUser.user_id,
+        created_at: new Date()
+      }],{upsert: false})
+
+      if (error) throw error
+    }catch(error) {
+      console.error(error);
+      alert(error)
+    }
+  }
+
 
   return (
     <div className='profile-data'>
