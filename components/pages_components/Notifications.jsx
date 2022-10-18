@@ -1,6 +1,7 @@
 import React from 'react'
 import NotificationList from "../core/NotificationList"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { supabase } from '../../utils/supabaseClient';
 
 
 function Notifications({notifications,currentUser}) {
