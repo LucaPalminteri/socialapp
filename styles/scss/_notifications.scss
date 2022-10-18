@@ -1,0 +1,82 @@
+@keyframes fadeLeft {
+    0% {
+        opacity: .3;
+        transform: translateX(-15px);
+    }
+    50% {
+        opacity: .5;
+        transform: translateX(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeRight {
+    0% {
+        opacity: .3;
+        transform: translateX(15px);
+    }
+    50% {
+        opacity: .5;
+        transform: translateX(-8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+.notifications {
+    padding: 60px 0;
+
+    .btn-deleteChat {
+        margin: 0;
+        background-color: transparent;
+        color: red;
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+    }
+
+    .notification-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #efefef;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 12px;
+
+        p {
+            margin-left: 10px;
+            span {
+                font-weight: 700;
+            }
+        }
+
+        
+
+    }
+
+    .message {
+        background-color: #9F61F0;
+    }
+
+    .follow {
+        background-color: #0d92cf;
+    }
+
+    .odd{
+        animation-name: fadeLeft;
+        animation-duration: .5s;
+    }
+
+    .even {
+        animation-name: fadeRight;
+        animation-duration: .5s;
+    }
+}
