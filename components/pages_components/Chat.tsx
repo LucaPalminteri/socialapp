@@ -7,44 +7,28 @@ import Spinner from '../core/Spinner';
 import {supabase} from '../../utils/supabaseClient'
 import ChatUserList from '../core/ChatUserList'
 
-export default function Chat({users, activeUser, chats}) {  
+export default function Chat({users, activeUser, chats, lastMessages}) {  
 
-
-
-  const [ready, setIsReady] = useState(false)
-
-  useEffect(() => {
-    
-  setTimeout(() => {
-    setIsReady(true)
-  }, 2000);
-  }, [])
-  
-  const getLastMessage = async (id_sen, id_rec) => {
-    try {
-      const { data, error } = await supabase
-        .from('messages')
-        .select()
-        .or(`and(user_id_sender.eq.${id_sen},user_id_reciever.eq.${id_rec}),and(user_id_sender.eq.${id_rec},user_id_reciever.eq.${id_sen})`)
-        .order('id',{ascending:false})
-        .limit(1)
-
-        if(error) throw error
-        return data[0].message
-    } catch(error) {
-      console.error(error)
-    }
-  }
+  console.log(lastMessages);
   
   let aux = []
   const arrChats = chats.map((chat,index) => {
+
+    let lastMsg = ""
+    lastMessages.map(msg => {
+      if(
+        (chat.user_id_sender == msg.user_id_sender || chat.user_id_sender == msg.user_id_reciever) 
+        && 
+        (chat.user_id_reciever == msg.user_id_reciever || chat.user_id_reciever == msg.user_id_sender)
+        ) lastMsg = msg.message
+    })
     aux.push(chat.user_id_reciever)
     if(chat.username == activeUser.username) {
       if(aux.some(id => id == chat.user_id_sender)) return ;
       [chat] = users.filter(user => user.user_id == chat.user_id_sender)
     }
 
-    return <ChatUserList key={index} chat={chat}/>
+    return <ChatUserList key={index} chat={chat} lastMsg={lastMsg}/>
   })
   
 

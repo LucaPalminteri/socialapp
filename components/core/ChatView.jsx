@@ -13,7 +13,7 @@ function ChatView({user, activeUser}) {
   useEffect(()=> {
     getMessages()
   },[])
-//.eq('user_id_sender',activeUser.user_id).eq('user_id_reciever',user.user_id)
+
   const getMessages = async () => {
     try {
       const { data, error } = await supabase.from('messages').select().in(`user_id_sender`,[`${activeUser.user_id}`,`${user.user_id}`]).in(`user_id_reciever`,[`${activeUser.user_id}`,`${user.user_id}`])
@@ -40,8 +40,26 @@ function ChatView({user, activeUser}) {
       behavior: 'smooth'
     });
     setMessages(prev => prev.concat(payload.new))
+    
   })
   .subscribe()
+
+  const sendNotification = async () => {
+    try {
+      const {data,error} = await supabase.from('notifications')
+      .insert([{
+        to_user: user.user_id,
+        type: 'message',
+        from_user: activeUser.user_id,
+        created_at: new Date()
+      }],{upsert: false})
+
+      if (error) throw error
+    }catch(error) {
+      console.error(error);
+      alert(error)
+    }
+  }
 
   const handleSendMessage = async (e) => {
     e.preventDefault()
@@ -53,10 +71,12 @@ function ChatView({user, activeUser}) {
         user_id_sender: activeUser.user_id,
         user_id_reciever: user.user_id,
         message,
-        created_at: new Date()
+        created_at: new Date(),
+        last_message: true
       }],{upsert: false})
 
       inputMessage.current.value = ''
+      sendNotification()
 
       if (error) throw error
     }catch(error) {

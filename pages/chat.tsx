@@ -4,13 +4,13 @@ import axios from 'axios';
 import jwt from "jsonwebtoken"; 
 import { GetServerSideProps } from 'next';
 
-export default function chat({users, activeUser, chats}) {
+export default function chat({users, activeUser, chats, messages}) {
 
   // TODO: filter by user that have chat with
   return (
     <div>
         <Header username={activeUser.username} showBackArrow={true} title={undefined}/>
-        <Chat users={users} activeUser={activeUser} chats={chats}/>
+        <Chat users={users} activeUser={activeUser} chats={chats} lastMessages={messages}/>
     </div>
   )
 }
@@ -29,16 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const users = await axios.get(`${baseURL}/rest/v1/users?select=*&order=created_at&username=neq.${activeUser.username}`,config);
     const chats = await axios.get(`${baseURL}/rest/v1/user_messages?select=*&or=(user_id_sender.eq.${activeUser.user_id},user_id_reciever.eq.${activeUser.user_id})`,config);    
+    const messages = await axios.get(`${baseURL}/rest/v1/messages?last_message=eq.true&or=(user_id_sender.eq.${activeUser.user_id},user_id_reciever.eq.${activeUser.user_id})`,config);    
 
-   let chatWithMsg =  chats.data.map(async (chat) => {
-    
-      const lastMessages = await axios.get(`${baseURL}/rest/v1/messages?select=message&or=(and(user_id_sender.eq.${chat.user_id_sender},user_id_reciever.eq.${chat.user_id_reciever}),and(user_id_sender.eq.${chat.user_id_reciever},user_id_reciever.eq.${chat.user_id_sender}))&limit=1&order=id.desc`,config);
-      let last_message = await lastMessages.data[0]
-      return await {...chat,last_message}
-    
-    })
-
-    console.log(chatWithMsg);
-
-    return {props: {users: users.data, activeUser,chats: chats.data}}
+    return {props: {users: users.data, activeUser,chats: chats.data, messages: messages.data}}
   }

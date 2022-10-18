@@ -2,7 +2,7 @@ import React from 'react'
 import Avatar from '../core/Avatar'
 import Link from 'next/link'
 
-function ChatUserList({chat}) {
+function ChatUserList({chat,lastMsg}) {
     
     return (
      <div className='chat-item'>
@@ -11,7 +11,7 @@ function ChatUserList({chat}) {
           <Avatar url={chat.avatar_url} size={50} />
           <div>
             <p>{chat.username}</p>
-            <p>Last message</p>
+            <p>{lastMsg}</p>
           </div>
         </div>
       </Link>
