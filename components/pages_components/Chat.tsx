@@ -6,10 +6,11 @@ import Image from 'next/image';
 import Spinner from '../core/Spinner';
 import {supabase} from '../../utils/supabaseClient'
 import ChatUserList from '../core/ChatUserList'
+import SuggestUser from '../core/SuggestUser';
 
 export default function Chat({users, activeUser, chats, lastMessages}) {  
 
-  console.log(lastMessages);
+  const [searchUser, setSearchUser] = useState("")
   
   let aux = []
   const arrChats = chats.map((chat,index) => {
@@ -30,14 +31,25 @@ export default function Chat({users, activeUser, chats, lastMessages}) {
 
     return <ChatUserList key={index} chat={chat} lastMsg={lastMsg}/>
   })
+
+  let usersFilter = users.filter(user => user.username.includes(searchUser))
+  if(searchUser == "") usersFilter = []
+  const arrayUsersFilter = usersFilter.map((user,index) => <ChatUserList key={index} chat={user} lastMsg={""}/>).slice(0,5)
+
+  const inputHandler = (e) => {
+    setSearchUser(e.target.value.toLowerCase());
+  }
   
 
   return (
     <div className="chat">
       <div className='chat-search-container'>
-        <input type='text' placeholder='Search someone to chat...' />
+        <input type='text' placeholder='Search someone to chat...' onChange={(e)=> inputHandler(e)} />
         <button><SearchOutlinedIcon /></button>
       </div>
+      {arrayUsersFilter.length != 0 && <div className='search-chat'>
+        {arrayUsersFilter}
+      </div>}
       {
         chats.length == 0 ?
         <div>
