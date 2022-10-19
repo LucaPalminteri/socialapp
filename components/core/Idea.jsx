@@ -41,6 +41,8 @@ export default function Idea({idea, user}) {
   }
 
   const handleArchiveIdea = async () => {
+    alert('not ready')
+    return;
     try {
       const { data, error } = await supabase
       .from('ideas_archived')
