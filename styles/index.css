@@ -631,6 +631,7 @@ button:active {
   display: inline-block;
   background-color: #eff389;
   color: #000;
+  font-weight: 600;
 }
 
 .idea p {
@@ -640,6 +641,7 @@ button:active {
   background-color: #eff389;
   border-radius: 8px;
   color: #000;
+  font-weight: 300;
 }
 
 .idea .date-container {
@@ -655,6 +657,10 @@ button:active {
   right: 0;
   font-size: 10px;
   margin-left: 5px;
+  background-color: #eff389;
+  padding: 4px;
+  border-radius: 4px;
+  font-weight: 200;
 }
 
 .homepage {
@@ -757,7 +763,7 @@ button:active {
   max-width: 300px;
   background-color: #efefef;
   padding: 0 20px;
-  margin: 10px;
+  margin: 5px 10px;
   border-radius: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1027,6 +1033,10 @@ button:active {
   border-radius: 8px;
   margin: 0;
   margin-left: 5px;
+}
+
+.chat .search-chat {
+  border-bottom: 10px solid grey;
 }
 
 .chat .chat-item {
@@ -1451,7 +1461,7 @@ button:active {
       -ms-flex-align: center;
           align-items: center;
   background-color: #efefef;
-  padding: 10px;
+  padding: 5px;
   margin: 10px;
   border-radius: 12px;
 }

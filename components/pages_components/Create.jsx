@@ -34,6 +34,12 @@ export default function Create() {
         alert('body cannot be empty')
         return false;
       }
+
+      if(body.current.value.length > 1000) {
+        alert('body length cannot be larger than 1000 characters')
+        return false;
+      }
+
       return true
     }
 
