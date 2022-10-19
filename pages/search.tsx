@@ -6,6 +6,8 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next';
 
 export default function search({users}) {
+
+  console.log(users);
   return (
     <div>
         <Head>
@@ -29,7 +31,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       Authorization: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     }
   };
-  const {data} = await axios.get(`${baseURL}/rest/v1/users?select=*,account_data(user_id,followers,following,ideas)&order=created_at`,config);
+  const {data} = await axios.get(`${baseURL}/rest/v1/user_data?select=*&order=ideas.desc`,config);
+
+  console.log(data);
   
 
   return {props: {users: data}}

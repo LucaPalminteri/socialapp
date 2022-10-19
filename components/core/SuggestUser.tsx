@@ -16,8 +16,8 @@ export default function SuggestUser({user, size}) {
             />
             <h4>{user.username}</h4>
             <div className="user-info">
-              <p>{user.account_data[0]?.ideas}<LightbulbOutlinedIcon fontSize="small"/></p>
-              <p>{user.account_data[0]?.followers}<PeopleOutlineOutlinedIcon fontSize="small"/></p>
+              <p>{user.ideas}<LightbulbOutlinedIcon fontSize="small"/></p>
+              <p>{user.followers}<PeopleOutlineOutlinedIcon fontSize="small"/></p>
             </div>
         </div>
         </Link>
