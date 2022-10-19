@@ -3,13 +3,13 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Link from 'next/link';
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Avatar from './Avatar'
 import React from 'react'
 
 export default function Header({ title, username, showBackArrow }) {
 
   const [isButtonToggled,setIsButtonToggled] = useState(false)
+  const [showNotif, setShowNotif] = useState(false)
 
   const goBack = () =>{
     setIsButtonToggled(prev => !prev)
@@ -38,12 +38,12 @@ export default function Header({ title, username, showBackArrow }) {
         :
         title == 'HOMEPAGE' ? 
         <Link href={'/chat'}>
-          <ChatBubbleOutlineOutlinedIcon fontSize='medium' className='header-right-icon' />
+          <div>
+            <ChatBubbleOutlineOutlinedIcon fontSize='medium' className='header-right-icon' />
+            <div className={showNotif ? 'chat-notification' : ''}></div>
+          </div>
         </Link>
         :
-        // title == 'CREATE' ? 
-        // <SearchOutlinedIcon fontSize='large' className='header-right-icon' />
-        // :
         <></>
       }
     </div>

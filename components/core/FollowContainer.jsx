@@ -75,10 +75,11 @@ export default function FollowContainer({ideas, user, follows, followers}) {
     try {
       const {data,error} = await supabase.from('notifications')
       .insert([{
-        user_id: user.user_id,
+        to_user: user.user_id,
         type: 'follow',
-        from: currentUser.user_id,
-        created_at: new Date()
+        from_user: currentUser.user_id,
+        created_at: new Date(),
+        seen: false
       }],{upsert: false})
 
       if (error) throw error
