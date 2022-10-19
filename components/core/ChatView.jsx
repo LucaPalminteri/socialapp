@@ -1,15 +1,14 @@
 import SendIcon from '@mui/icons-material/Send';
 import { supabase } from '../../utils/supabaseClient';
 import { useState,useEffect,useRef } from 'react';
-import axios from 'axios';
 import React from 'react'
-import Avatar from './ChangeAvatar';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function ChatView({user, activeUser}) {
   const [messages, setMessages] = useState([])
   const inputMessage = useRef()
 
+  
   useEffect(()=> {
     getMessages()
   },[])
@@ -19,11 +18,13 @@ function ChatView({user, activeUser}) {
       const { data, error } = await supabase.from('messages').select().in(`user_id_sender`,[`${activeUser.user_id}`,`${user.user_id}`]).in(`user_id_reciever`,[`${activeUser.user_id}`,`${user.user_id}`])
       if (error) throw error
       setMessages(data)
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        left: 0,
-        behavior: 'smooth'
-      });
+      if(window.location.href.includes('/chat/')){
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
       
     } catch(error) {
       alert(error)
@@ -34,11 +35,13 @@ function ChatView({user, activeUser}) {
   supabase
   .channel('*')
   .on('postgres_changes', { event: '*', schema: '*' }, payload => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      left: 0,
-      behavior: 'smooth'
-    });
+    if(window.location.href.includes('/chat/')){
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        left: 0,
+        behavior: 'smooth'
+      });
+    }
     setMessages(prev => prev.concat(payload.new))
     
   })
@@ -51,6 +54,7 @@ function ChatView({user, activeUser}) {
         to_user: user.user_id,
         type: 'message',
         from_user: activeUser.user_id,
+        seen: 'false',
         created_at: new Date()
       }],{upsert: false})
 
