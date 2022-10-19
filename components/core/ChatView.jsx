@@ -65,8 +65,26 @@ function ChatView({user, activeUser}) {
     e.preventDefault()
     const message = inputMessage.current.value
     if (message.trim() == "") return;
+    // set all last message to false
+    // try {
+    //   const {data,error} = await supabase
+    //   .from('messages')
+    //   .update({
+    //     last_message: false
+    //   })
+    //   .eq('user_id_sender',activeUser.user_id)
+    //   .eq('user_id_reciever',user.user_id)
+
+    //   if (error) throw error
+    // }catch(error) {
+    //   console.error(error);
+    //   alert(error)
+    // }
+
+    // insert new message with the last message in true
     try {
-      const {data,error} = await supabase.from('messages')
+      const {data,error} = await supabase
+      .from('messages')
       .insert([{
         user_id_sender: activeUser.user_id,
         user_id_reciever: user.user_id,

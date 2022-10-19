@@ -9,6 +9,7 @@ import ChatUserList from '../core/ChatUserList'
 import SuggestUser from '../core/SuggestUser';
 
 export default function Chat({users, activeUser, chats, lastMessages}) {  
+  console.log(lastMessages);
 
   const [searchUser, setSearchUser] = useState("")
   
