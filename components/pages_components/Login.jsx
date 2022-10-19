@@ -5,10 +5,13 @@ import { useRouter } from 'next/router';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
+import { CircularProgress } from '@mui/material';
+import Snackbar from '@mui/material';
 
 export default function Login() {
 
     const [showPassword, setShowPassword] = useState(false)
+    const [load, setLoad] = useState(false)
 
     const router = useRouter();
     const username = useRef();
@@ -59,7 +62,7 @@ export default function Login() {
                 <VisibilityOutlinedIcon className='showpass-icon' onClick={() => setShowPassword(prev => !prev)}>View password</VisibilityOutlinedIcon>
                 }
             </div>
-            <button>Log In</button>
+            <button onClick={() => setLoad(true)}>{load ? <CircularProgress style={{width: 16,height: 16, color: '#FFF'}}/> : "Log In"}</button>
         </form>
 
         <span>Don&apos;t have an account? 
