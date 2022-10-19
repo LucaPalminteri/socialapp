@@ -45,6 +45,7 @@
         display: inline-block;
         background-color: #eff389;
         color: #000;
+        font-weight: 600;
     }
 
     p {
@@ -54,6 +55,7 @@
         background-color: #eff389;
         border-radius: 8px;
         color: #000;
+        font-weight: 300;
     }
 
     .date-container {
@@ -63,6 +65,10 @@
             right: 0;
             font-size: 10px;
             margin-left: 5px;
+            background-color: #eff389;
+            padding: 4px;
+            border-radius: 4px;
+            font-weight: 200;
         }
     }
 }

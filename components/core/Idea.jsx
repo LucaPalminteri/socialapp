@@ -5,12 +5,14 @@ import axios from 'axios'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { supabase } from '../../utils/supabaseClient';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
 export default function Idea({idea, user}) {
 
   const router = useRouter()
 
   const [isCurrentUser, setIsCurrentUser] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
   
   useEffect(() => {
     getCurrentUser()
@@ -28,14 +30,29 @@ export default function Idea({idea, user}) {
 
   const getCurrentUser = async () => {
     const {data} = await axios.get('/api/profile')
-    if (data.user_id == user.user_id) setIsCurrentUser(true)
+    setCurrentUser(data)
+    if (data.user_id == user.user_id) 
+    {
+      setIsCurrentUser(true)
+    }
   }
   const handleViewProfile = () => {
     router.push(`/${user.username}`)
   }
 
-  const handleArchiveIdea = () => {
-
+  const handleArchiveIdea = async () => {
+    try {
+      const { data, error } = await supabase
+      .from('ideas_archived')
+      .insert({
+        idea_id: idea.id,
+        created_at: new Date(),
+        from_user_id: currentUser.user_id
+      })
+      if (error) throw error
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -64,8 +81,9 @@ export default function Idea({idea, user}) {
         </div>
         <footer>
           <nav>
-            likes | comments | share
+            <LightbulbOutlinedIcon/> | comments | share
           </nav>
+          <span>x likes</span>
         </footer>
     </div>
   )
