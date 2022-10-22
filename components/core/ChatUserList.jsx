@@ -11,7 +11,7 @@ function ChatUserList({chat,lastMsg}) {
           <Avatar url={chat.avatar_url} size={50} />
           <div>
             <p>{chat.username}</p>
-            <p>{lastMsg}</p>
+            <p>{lastMsg.length > 50 ? lastMsg.slice(0,50)+"..." : lastMsg}</p>
           </div>
         </div>
       </Link>

@@ -12,6 +12,8 @@ export default function Chat({users, activeUser, chats, lastMessages}) {
   console.log(lastMessages);
 
   const [searchUser, setSearchUser] = useState("")
+
+  
   
   let aux = []
   const arrChats = chats.map((chat,index) => {
@@ -24,6 +26,9 @@ export default function Chat({users, activeUser, chats, lastMessages}) {
         (chat.user_id_reciever == msg.user_id_reciever || chat.user_id_reciever == msg.user_id_sender)
         ) lastMsg = msg.message
     })
+
+    
+
     aux.push(chat.user_id_reciever)
     if(chat.username == activeUser.username) {
       if(aux.some(id => id == chat.user_id_sender)) return ;
@@ -40,6 +45,16 @@ export default function Chat({users, activeUser, chats, lastMessages}) {
   const inputHandler = (e) => {
     setSearchUser(e.target.value.toLowerCase());
   }
+
+  supabase
+  .channel('*')
+  .on('postgres_changes', { event: '*', schema: '*' }, payload => {
+    console.log(payload.new);
+    if(payload.new.user_id_reciever == activeUser.user_id_reciever) console.log("yes");
+  })
+  .subscribe()
+
+  
   
 
   return (

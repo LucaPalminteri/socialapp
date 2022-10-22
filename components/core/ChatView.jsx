@@ -54,7 +54,7 @@ function ChatView({user, activeUser}) {
         to_user: user.user_id,
         type: 'message',
         from_user: activeUser.user_id,
-        seen: 'false',
+        seen: false,
         created_at: new Date()
       }],{upsert: false})
 
