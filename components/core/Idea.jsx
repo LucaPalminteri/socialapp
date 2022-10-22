@@ -7,7 +7,17 @@ import { supabase } from '../../utils/supabaseClient';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
-export default function Idea({idea, user}) {
+export default function Idea({idea, user, bulbs}) {
+
+  
+
+  let bulbsCount = 0
+
+  bulbs.map(bulb => {
+    if(bulb.idea_id == idea.id && bulb.idea_author == idea.user_id) {
+      bulbsCount++;
+    }
+  })
 
   const router = useRouter()
 
@@ -57,6 +67,29 @@ export default function Idea({idea, user}) {
     }
   }
 
+  supabase
+  .channel('*')
+  .on('postgres_changes', { event: '*', schema: '*' }, payload => {
+    console.log(payload.new);
+  })
+  .subscribe()
+
+  const handleBulb = async () => {
+    try {
+      const { data, error } = await supabase
+      .from('ideas_bulbs')
+      .insert({
+        idea_id: idea.id,
+        created_at: new Date(),
+        user_id_like: currentUser.user_id,
+        idea_author: user.user_id
+      })
+      if (error) throw error
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className='idea'>
       <div className='idea-header' >
@@ -82,10 +115,10 @@ export default function Idea({idea, user}) {
           <span>{idea.created_at.slice(11,16)}hs</span>
         </div>
         <footer>
-          <nav>
-            <LightbulbOutlinedIcon/> | comments | share
+          <nav onClick={handleBulb}>
+            <LightbulbOutlinedIcon/>
           </nav>
-          <span>x likes</span>
+          <span>{bulbsCount} bulbs</span>
         </footer>
     </div>
   )

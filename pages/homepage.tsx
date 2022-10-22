@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import { useEffect, useState } from 'react';
 import Spinner from '../components/core/Spinner';
 
-export default function Home({users,ideas}) {
+export default function Home({users,ideas,bulbs}) {
 
   const [ideasFoll, setideasFoll] = useState([""])
 
@@ -35,11 +35,11 @@ export default function Home({users,ideas}) {
       {
         array.length == 0 ?
         ideasFoll.length == 0 ?
-        <Homepage users={users} ideas={array}/>
+        <Homepage users={users} ideas={array} bulbs={bulbs}/>
         :
         <Spinner />
         :
-        <Homepage users={users} ideas={array}/>
+        <Homepage users={users} ideas={array} bulbs={bulbs}/>
       }
       <Footer activeNow='HOMEPAGE'/>
     </div>
@@ -62,6 +62,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   
   const users = await axios.get(`${baseURL}/rest/v1/users?select=*&order=created_at`,config);
   const ideas = await axios.get(`${baseURL}/rest/v1/ideas?select=*&user_id=neq.${activeUser.user_id}&order=created_at`,config);
+  const bulbs = await axios.get(`${baseURL}/rest/v1/ideas_bulbs?select=*&idea_author=neq.${activeUser.user_id}&order=created_at`,config);
 
-  return {props: {users: users.data, ideas: ideas.data}}
+  return {props: {users: users.data, ideas: ideas.data, bulbs: bulbs.data}}
 }
