@@ -1152,6 +1152,13 @@ button:active {
   position: relative;
 }
 
+.chat-view .msg p .msg-time {
+  font-weight: 200;
+  padding: 2px 0;
+  color: #787878;
+  font-size: 12px;
+}
+
 .chat-view .sender {
   text-align: right;
 }
@@ -1169,6 +1176,10 @@ button:active {
   width: 10px;
   background: -webkit-gradient(linear, right top, left bottom, from(#fff), color-stop(50%, #fff), color-stop(50%, #ECECEC), to(#ECECEC));
   background: linear-gradient(to bottom left, #fff 0%, #fff 50%, #ECECEC 50%, #ECECEC 100%);
+}
+
+.chat-view .sender p .msg-time {
+  text-align: right;
 }
 
 .chat-view .reciever {

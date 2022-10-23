@@ -24,7 +24,7 @@ export default function Chat({users, activeUser, chats, lastMessages}) {
         (chat.user_id_sender == msg.user_id_sender || chat.user_id_sender == msg.user_id_reciever) 
         && 
         (chat.user_id_reciever == msg.user_id_reciever || chat.user_id_reciever == msg.user_id_sender)
-        ) lastMsg = msg.message
+        ) lastMsg = msg
     })
 
     
