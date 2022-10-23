@@ -68,6 +68,8 @@ function ChatView({user, activeUser}) {
   const handleSendMessage = async (e) => {
     e.preventDefault()
     const message = inputMessage.current.value
+    console.log(message.length);
+    //return;
     if (message.trim() == "") return;
     // set all last message to false
     // try {
@@ -125,7 +127,7 @@ function ChatView({user, activeUser}) {
   const arrayMessages = messages.map((message,index) => {
   return (
     <div key={index} className={message.user_id_sender == activeUser.user_id ?  "msg sender" : "msg reciever" }>
-      <p>{message.message}</p>
+      <p>{message.message}<div className='msg-time'>{message.created_at.slice(11,16)}</div></p>
     </div>
   )
   })

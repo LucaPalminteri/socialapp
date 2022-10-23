@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ProfileSection({user, ideas}) {
 
-    const arrayIdeas = ideas.map(idea => <Idea key={idea.id} idea={idea} user={user}/>)
+    const arrayIdeas = ideas.map(idea => <Idea key={idea.id} idea={idea} user={user} bulbs={undefined}/>)
 
   return (
     <div className='profile-section'>
