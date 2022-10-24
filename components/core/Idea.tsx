@@ -6,8 +6,12 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { supabase } from '../../utils/supabaseClient';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
+import {message, chat, user} from '../../helpers/types'
+
 
 export default function Idea({idea, user, bulbs}) {
+
+  const firstLoadUser:user = {user_id:0,username:""}
 
   let bulbsCount = 0
 
@@ -20,7 +24,7 @@ export default function Idea({idea, user, bulbs}) {
   const router = useRouter()
 
   const [isCurrentUser, setIsCurrentUser] = useState(false)
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState(firstLoadUser)
   
   useEffect(() => {
     getCurrentUser()
@@ -29,7 +33,7 @@ export default function Idea({idea, user, bulbs}) {
   const handleDeleteIdea = async () => {
     if(confirm('Are you sure you want to delete this idea?') == false) return;
     try {
-      const { data, error } = await supabase.from('ideas').delete('id',idea.id)
+      const { data, error } = await supabase.from('ideas').delete().eq('id',idea.id)
       if (error) throw error
     } catch (error) {
       alert(error)
@@ -93,10 +97,9 @@ export default function Idea({idea, user, bulbs}) {
       <div className='idea-header' >
         <div onClick={() => handleViewProfile()}>
           <Avatar 
-          url={user.avatar_url} 
-          size={40} 
-          onClick={() => handleViewProfile()
-          } />
+            url={user.avatar_url} 
+            size={40} 
+          />
         </div>
           <h4 onClick={() => handleViewProfile()}>{user.username}</h4>
           {
