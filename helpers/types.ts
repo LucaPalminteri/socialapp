@@ -27,3 +27,12 @@ export type notification = {
     type:string,
     created_at:string
 }
+
+export type idea = {
+  id:number,
+  user_id:number,
+  title:string,
+  body:string,
+  likes:number,
+  created_at:string
+}

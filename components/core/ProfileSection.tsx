@@ -1,9 +1,10 @@
 import Idea from "./Idea"
 import React from 'react'
+import { idea } from "../../helpers/types"
 
 export default function ProfileSection({user, ideas}) {
 
-    const arrayIdeas = ideas.map(idea => <Idea key={idea.id} idea={idea} user={user} bulbs={[]}/>)
+    const arrayIdeas = ideas.map((idea:idea) => <Idea key={idea.id} idea={idea} user={user} bulbs={[]}/>)
 
   return (
     <div className='profile-section'>

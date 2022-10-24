@@ -1,7 +1,8 @@
 import { supabase } from "../../../utils/supabaseClient";
 import jwt from "jsonwebtoken"; 
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function handleUsers(req, res) { 
+export default function handleUsers(req:NextApiRequest, res:NextApiResponse) { 
     
     const {token} = req.cookies
   

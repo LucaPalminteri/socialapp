@@ -1,6 +1,7 @@
 import { supabase } from "../../../utils/supabaseClient";
+import { NextApiRequest, NextApiResponse } from 'next';
 
-const unfollowHandler = (req,res) => {
+const unfollowHandler = (req:NextApiRequest,res:NextApiResponse) => {
 
     const {user_id, follow_user_id} = req.body;
 
