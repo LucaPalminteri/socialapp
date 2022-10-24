@@ -1,23 +1,22 @@
 import React from 'react'
-import Avatar from '../core/Avatar'
+import Avatar from './Avatar'
 import Link from 'next/link'
 
 function ChatUserList({chat,lastMsg}) {
 
-  let timeLastMsg = "";
-    let currentDate = new Date();
-    let lastMsgDate = new Date(lastMsg.created_at)
+  let timeLastMsg:string;
+    let currentDate:Date = new Date();
+    let lastMsgDate:Date = new Date(lastMsg.created_at)
+    const funcDiff = (date:any, otherDate:any) => Math.ceil(Math.abs(date - otherDate) / (1000 * 60 * 60 * 3));
 
-    var difference= Math.abs(currentDate - lastMsgDate) - (1000 * 60 * 60 * 3);
-    // milliseconds - seconds - minutes - hours 
+    let difference = funcDiff(currentDate,lastMsgDate)
     const diffDays = Math.ceil(difference / (1000 * 60 * 60 * 24)); 
     const diffHours = Math.ceil(difference / (1000 * 60 * 60)); 
     const diffMinutes = Math.ceil(difference / (1000 * 60));
     const diffSeconds = Math.ceil(difference / (1000));
 
+
     
-    console.log("");
-    console.log(chat.username);
     if (diffDays == 0) {
       timeLastMsg = "x days ago"
 
@@ -42,8 +41,6 @@ function ChatUserList({chat,lastMsg}) {
     } else if(diffDays != 0) {
       console.log("days of delay");
     }
-
-    console.log(timeLastMsg);
 
 
     return (

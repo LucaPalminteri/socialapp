@@ -6,7 +6,6 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {encrypt} from "../../helpers/handleBcrypt"
 import { CircularProgress } from '@mui/material';
-import Snackbar from '@mui/material';
 
 export default function Login() {
 
@@ -14,8 +13,8 @@ export default function Login() {
     const [load, setLoad] = useState(false)
 
     const router = useRouter();
-    const username = useRef();
-    const password = useRef();
+    const username = useRef<HTMLInputElement | undefined>();
+    const password = useRef<HTMLInputElement | undefined>();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
