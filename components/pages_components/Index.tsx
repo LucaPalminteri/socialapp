@@ -19,9 +19,6 @@ export default function Index() {
             <button>Create account</button>
         </Link>
       </div>
-      {/* <footer>
-        <Image src={'/wave.svg'} width={100} height={40} alt='' layout='responsive'/>
-      </footer> */}
     </div>
   )
 }

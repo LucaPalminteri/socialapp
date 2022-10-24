@@ -6,7 +6,6 @@ import { GetServerSideProps } from 'next';
 
 export default function chat({users, activeUser, chats, messages}) {
 
-  // TODO: filter by user that have chat with
   return (
     <div>
         <Header username={activeUser.username} showBackArrow={true} title={undefined}/>

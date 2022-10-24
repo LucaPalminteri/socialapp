@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken"; 
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default function profileHandler(req, res) {
+
+export default function profileHandler(req:NextApiRequest, res:NextApiResponse) {
   const {token} = req.cookies
   
   if (token == "null") return res.status(401).json({ error: "Not logged in" });
