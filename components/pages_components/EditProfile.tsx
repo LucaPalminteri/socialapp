@@ -3,12 +3,18 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import ChangeAvatar from '../core/ChangeAvatar'
 import { supabase } from '../../utils/supabaseClient';
+import {message, chat, user} from '../../helpers/types'
 
 export default function EditProfile({countries, user}) {
 
   const router = useRouter()
-  const name = useRef(), email = useRef(), country = useRef(), bio = useRef(),
-  dateOfBirth = useRef(), sexF = useRef(),sexM = useRef()
+  const name = useRef<HTMLInputElement | undefined>(), 
+  email = useRef<HTMLInputElement | undefined>(), 
+  country = useRef<HTMLSelectElement | undefined>(), 
+  bio = useRef<HTMLTextAreaElement | undefined>(),
+  dateOfBirth = useRef<HTMLInputElement | undefined>(), 
+  sexF = useRef<HTMLInputElement | undefined>(),
+  sexM = useRef<HTMLInputElement | undefined>()
 
   const [avatar_url, setAvatarUrl] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -25,7 +31,7 @@ export default function EditProfile({countries, user}) {
   }, [user])
 
   
-  const countryOptions = countries.map((country,index) => <option value={country} key={index}>{country}</option>)
+  const countryOptions = countries.map((country:string,index:number) => <option value={country} key={index}>{country}</option>)
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -96,7 +102,7 @@ export default function EditProfile({countries, user}) {
             <ChangeAvatar 
               url={user.avatar_url}
               size={100}
-              onUpload={(url) => {
+              onUpload={(url:string) => {
                 setAvatarUrl(url)
                 updateProfile({ user, avatar_url: url })
               }}
@@ -105,7 +111,7 @@ export default function EditProfile({countries, user}) {
           <label>Full Name</label>
           <input ref={name} type='text' placeholder='Full Name'/>
           <label>Bio</label>
-          <textarea ref={bio} type='text' placeholder='Bio'/>
+          <textarea ref={bio} placeholder='Bio'/>
           <label>Email</label>
           <input ref={email} type='email' placeholder='Email'/>
           <label>Date of Birth</label>
@@ -122,7 +128,7 @@ export default function EditProfile({countries, user}) {
             </div>
           </div>
           <label>Country</label>
-          <select ref={country} type='' placeholder='Full Name'>
+          <select ref={country} placeholder='Full Name'>
             {countryOptions}
           </select>
 

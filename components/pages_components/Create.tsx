@@ -1,15 +1,12 @@
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import axios from 'axios';
-import { supabase } from '../../utils/supabaseClient';
 
 export default function Create() {
 
   const router = useRouter();
-  const title = useRef();
-  const body = useRef();
-
-  
+  const title = useRef<HTMLInputElement | undefined>();
+  const body = useRef<HTMLTextAreaElement | undefined>();
 
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -46,7 +43,7 @@ export default function Create() {
 
   return (
     <div className='create'>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <input type='text' ref={title} placeholder='Title of the idea'/>
             <textarea ref={body} placeholder="Type your idea here ..."/>
             <button>Create Idea</button>

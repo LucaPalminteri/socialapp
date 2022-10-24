@@ -2,8 +2,7 @@ import React from 'react'
 import NotificationList from "../core/NotificationList"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { supabase } from '../../utils/supabaseClient';
-import {useEffect} from "next"
-
+import {notification} from '../../helpers/types'
 
 function Notifications({notifications,currentUser}) {
 
@@ -36,7 +35,7 @@ function Notifications({notifications,currentUser}) {
   }
   changeNotificationState()
 
-    let arrNotifications = notifications.map((notif,index) => <NotificationList key={index} notif={notif} i={index}/>)
+    let arrNotifications = notifications.map((notif:notification,index:number) => <NotificationList key={index} notif={notif} i={index}/>)
 
     const handeDeleteChat = async() => {
         if(confirm('This notification logs will be deleted permanently for both users, are you sure you want to continue?') == false) return;

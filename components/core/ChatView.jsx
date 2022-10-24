@@ -3,6 +3,7 @@ import { supabase } from '../../utils/supabaseClient';
 import { useState,useEffect,useRef } from 'react';
 import React from 'react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import {message, chat, user} from '../../helpers/types'
 
 function ChatView({user, activeUser}) {
   const [messages, setMessages] = useState([])
@@ -136,11 +137,11 @@ function ChatView({user, activeUser}) {
 
   return (
     <div className='chat-view'>
-      <button className='btn-deleteChat' onClick={handeDeleteChat}>
+      <button className='btn-deleteChat' onClick={(e) => handeDeleteChat(e)}>
         <DeleteOutlineIcon />
       </button>
         <div className='chat-body'>{arrayMessages}</div>
-        <form onSubmit={handleSendMessage}>
+        <form onSubmit={(e) => handleSendMessage(e)}>
           <div id='go' className='chat-input-container'>
             <input autoFocus ref={inputMessage} type='text' placeholder='Message...' />
             <button type='submit'><SendIcon/></button>

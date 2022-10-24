@@ -9,8 +9,6 @@ import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
 export default function Idea({idea, user, bulbs}) {
 
-  
-
   let bulbsCount = 0
 
   bulbs.map(bulb => {

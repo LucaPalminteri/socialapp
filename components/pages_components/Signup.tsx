@@ -9,7 +9,11 @@ import {encrypt} from "../../helpers/handleBcrypt"
 export default function Signup() {
 
     const router = useRouter()
-    const name = useRef(), username = useRef(), password = useRef(), email = useRef(), dateOfBirth = useRef()
+    const name = useRef<HTMLInputElement | undefined>(), 
+    username = useRef<HTMLInputElement | undefined>(), 
+    password = useRef<HTMLInputElement | undefined>(), 
+    email = useRef<HTMLInputElement | undefined>(), 
+    dateOfBirth = useRef<HTMLInputElement | undefined>()
 
     const [showPassword, setShowPassword] = useState(false)
   
