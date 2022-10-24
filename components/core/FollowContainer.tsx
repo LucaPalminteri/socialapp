@@ -5,11 +5,13 @@ import { useRouter } from "next/router";
 import { supabase } from "../../utils/supabaseClient";
 import SendIcon from '@mui/icons-material/Send';
 import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import {message, chat, user} from '../../helpers/types'
 
 export default function FollowContainer({ideas, user, follows, followers}) {
 
+  const firstLoadUser:user = {user_id:0,username:""}
   const [userFollowers, setUserFollowers] = useState(followers.length)
-  const [currentUser, setCurrentUser] = useState({})  
+  const [currentUser, setCurrentUser] = useState(firstLoadUser)  
   const [isFollowing, setIsFollowing] = useState(undefined)
   const route = useRouter()
 
@@ -53,7 +55,7 @@ export default function FollowContainer({ideas, user, follows, followers}) {
   const followUser = async ()=> {
       const {data} = await supabase.from('user_follows').select().eq('user_id',currentUser.user_id).eq('follow_user_id',user.user_id)
       if (data.length != 0) setIsFollowing(true)
-      else if (data != []) setIsFollowing(false)
+      else setIsFollowing(false)
       
   }
   if (currentUser.user_id != undefined) followUser()
@@ -74,13 +76,13 @@ export default function FollowContainer({ideas, user, follows, followers}) {
   const sendNotification = async () => {
     try {
       const {data,error} = await supabase.from('notifications')
-      .insert([{
+      .insert({
         to_user: user.user_id,
         type: 'follow',
         from_user: currentUser.user_id,
         created_at: new Date(),
         seen: false
-      }],{upsert: false})
+      })
 
       if (error) throw error
     }catch(error) {
@@ -105,7 +107,7 @@ export default function FollowContainer({ideas, user, follows, followers}) {
         <h4>{follows.length}</h4>
       </div>
       {
-        currentUser == {} ?
+        currentUser == firstLoadUser ?
         <button>.</button>
         :
           currentUser.user_id == user.user_id ? 

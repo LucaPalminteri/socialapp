@@ -7,7 +7,7 @@ import {message, chat, user} from '../../helpers/types'
 
 function ChatView({user, activeUser}) {
   const [messages, setMessages] = useState([])
-  const inputMessage = useRef()
+  const inputMessage = useRef<HTMLInputElement | undefined>()
 
   
   useEffect(()=> {
@@ -51,13 +51,13 @@ function ChatView({user, activeUser}) {
   const sendNotification = async () => {
     try {
       const {data,error} = await supabase.from('notifications')
-      .insert([{
+      .insert({
         to_user: user.user_id,
         type: 'message',
         from_user: activeUser.user_id,
         seen: false,
         created_at: new Date()
-      }],{upsert: false})
+      })
 
       if (error) throw error
     }catch(error) {
@@ -92,13 +92,13 @@ function ChatView({user, activeUser}) {
     try {
       const {data,error} = await supabase
       .from('messages')
-      .insert([{
+      .insert({
         user_id_sender: activeUser.user_id,
         user_id_reciever: user.user_id,
         message,
         created_at: new Date(),
         last_message: true
-      }],{upsert: false})
+      })
 
       inputMessage.current.value = ''
       sendNotification()
@@ -111,7 +111,7 @@ function ChatView({user, activeUser}) {
 
   }
 
-  const handeDeleteChat = async() => {
+  const handeDeleteChat = async (e) => {
     if(confirm('This chat will be deleted permanently for both users, are you sure you want to continue?') == false) return;
     try {
     const { error } = await supabase
